@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Developer Regestration</h1>
+    <%- include('../../partials/messages') %>
+    <form action="/developer/home/Register" method="POST">
+        <div>
+            <label for="name">Full Name</label>
+            <input 
+                type="text" 
+                name="name" 
+                value="<%= typeof locals.data != 'undefined' ? locals.data.name : '' %>"
+                required >
+        </div>
+        <div>
+            <label for="name">Mobile</label>
+            <input 
+                type="Number" 
+                name="mobile" 
+                maxlength="10" 
+                minlength="10" 
+                value="<%= typeof locals.data != 'undefined' ? locals.data.mobile : '' %>"
+                required>
+        </div>
+        <div>
+            <label for="name">Email</label>
+            <input 
+                type="email" 
+                name="email" 
+                pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                title="Please provide a valid mail" 
+                autocomplete="off" 
+                value="<%= typeof locals.data != 'undefined' ? locals.data.email : '' %>"
+                required>
+        </div>
+        <div>
+            <label for="name">Password</label>
+            <input 
+                type="password" 
+                name="password" 
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[A-Z]).{8,}" 
+                title="Password must contain atleat 8 letter including small and capital letter, number and no special characters" 
+                required
+            >
+        </div>
+        <div>
+            <label for="name">Confirm Password</label>
+            <input type="password" name="confPassword" required>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+
+    <a href="/developer/home/Login">Already have an account?</a>
+</body>
+</html>

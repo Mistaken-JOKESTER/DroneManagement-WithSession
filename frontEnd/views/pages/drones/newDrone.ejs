@@ -1,0 +1,57 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>New Modals</h1>
+    <%- include('../../partials/messages') %>
+    <form action="/developer/drones/newDrone" method="POST">
+        <label>
+            <select name="modalId" id="modalSelect" required>
+                <option value="">Sletect Modal</option>
+                <% locals.modals.forEach( modal => { %>
+                    <%  if(locals.modalName || modal.modalName == locals.modalName){ %>
+                        <option value="<%= modal._id %>" selected>
+                            <%= modal.modalName %>
+                        </option>
+                    <% } else { %>
+                        <option value="<%= modal._id %>">
+                            <%= modal.modalName %>
+                        </option>
+                    <% } %>
+                <% }) %>
+            </select>
+        </label>
+        <label>
+            Flignt Controller No
+            <input 
+                type="text" 
+                name="flightControllerNumber" 
+                value="<%= typeof locals.flightControllerNumber != 'undefined' ? locals.flightControllerNumber : '' %>"
+                required>  
+        </label>
+        <label>
+            Manufactring Date
+            <input 
+                type="date" 
+                name="buildDate"
+                value="<%= typeof locals.buildDate != 'undefined' ? locals.buildDate : '' %>"
+                required>
+        </label>
+        <label>
+            assignedTO
+            <input 
+                type="email" 
+                name="assignedTo" 
+                value="<%= typeof locals.assignedTo != 'undefined' ? locals.assignedTo : '' %>"
+                required>
+        </label> 
+
+        <input type="submit">
+    </form>
+</body>
+</html>

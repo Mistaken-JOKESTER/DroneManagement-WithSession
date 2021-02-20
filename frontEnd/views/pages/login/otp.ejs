@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otp</title>
+</head>
+<body>
+    <h1>Otp Verification</h1>
+    <%- include('../../partials/messages') %>
+    <form action="/developer/home/verifyloginotp" method="POST">
+        <div>
+            <label for="name">Otp</label>
+            <input 
+                type="number" 
+                name="otp"
+                value="<%= typeof locals.otp != 'undefined' ? locals.otp : '' %>"
+                required
+            >
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+    <a href="/developer/home/regenerateOtp">Regenerate Otp</a>
+    <a href="/developer/home/Login">Login again</a>
+</body>
+</html>

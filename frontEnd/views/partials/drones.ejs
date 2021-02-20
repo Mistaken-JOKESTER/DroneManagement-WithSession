@@ -1,0 +1,8 @@
+<h3>Drones......</h3>
+<% locals.drones.forEach(drone => { %>
+    <div>
+        <p><%= drone.flightControllerNumber %></p>
+        <p><%= drone.assignedTo %></p>
+        <button><a href="viewDrone/<%= drone._id %>">view</a></button>
+    </div>
+<% }) %>

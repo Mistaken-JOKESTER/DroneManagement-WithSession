@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+
+:root {
+    --color1: #f4f4f4;
+    --color2: #f0a500;
+    --color3: #cf7500;
+    --color4: #1a1c20;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    margin: 0px 2px;
+    background: var(--color1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    margin: 3px 2px;
+    background: var(--color3);
+    border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    margin: 3px 2px;
+    background: var(--color2);
+    border-radius: 4px;
+}
+
+*{
+    font-family: 'Orbitron', sans-serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+
+}
+
+body {
+    background-color: var(--color4);
+    color: var(--color1);
+}
+
+#navbar {
+    background-color: none;
+    overflow: hidden;
+    padding: 90px 10px;
+    transition: 0.4s;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+}
+
+#navbar a {
+    float: left;
+    color: var(--color1);
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+#navbar #logo {
+    font-size: 5rem;
+    font-weight: bold;
+    transition: 0.4s;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#navbar-right a:hover {
+    background-color: var(--color2);
+    color: var(--color4);
+}
+
+#navbar a.active {
+    background-color: var(--color2);
+    color: var(--color4);
+}
+
+#navbar-right {
+    float: right;
+    background-color: none;
+}
+
+#navbar-right a {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+main{
+    margin-top: 40vh;
+    height: 100vh;
+    padding: 0px 20px;
+}
+
+.grid{
+text-align: center;
+}
+
+.grid span a{
+    display: inline;
+    color: var(--color2);
+    margin: 30px;
+    transition: all 1s ease-in;
+    justify-items: center;
+}
+
+.grid span a:hover{
+    color: var(--color1);
+    font-size: 4em;
+}
+

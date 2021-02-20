@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Home</h1>
+    <% if(locals.logedIn) { %>
+        <button><a href="/developer/home/logout">Logout</a></button>
+        <button><a href="/developer/home/dashboard">Dashboard</a></button>
+    <% } else { %>
+        <button><a href="/developer/home/Register">Register</a></button>
+        <button><a href="/developer/home/Login">Login</a></button>
+    <% } %>
+    
+</body>
+</html>

@@ -1,0 +1,17 @@
+<% if(locals.errors){ %> 
+    <% errors.forEach(error => { %>
+        <div><%= error %></div>
+    <% }) %> 
+<% } %> 
+
+<% if(locals.success_msg){ %>
+    <h3><%= locals.success_msg %></h3>
+<% } %> 
+
+<% if(locals.error_msg){ %>
+    <%= locals.error_msg %>
+<% } %> 
+
+<% if(locals.warning_msg){ %>
+      <%= locals.warning_msg %>
+<% } %>

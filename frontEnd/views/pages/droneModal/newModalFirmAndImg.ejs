@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../../partials/messages') %>
+    <h1>Upload Image and Firmware of modal</h1>
+    <form action="/developer/dronemodal/uloadImgandFirm" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="imageFile">
+                Version 
+                <input type="text"
+                    name="version"
+                    value="1.0.0"
+                    required
+                >
+            </label>
+        </div>
+        <div>
+            <label for="imageFile">
+                Image
+                <input type="file"
+                    name="imageFile"
+                    accept="image/*"
+                    required
+                >
+            </label>
+        </div>
+        <div>
+            <label for="firmFile">
+                Firmware
+                <input type="file"
+                    name="firmFile"
+                    accept="bin/*"
+                    required
+                >
+            </label>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+</body>
+</html>

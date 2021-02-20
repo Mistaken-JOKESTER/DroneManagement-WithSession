@@ -1,0 +1,14 @@
+<% if(locals.modals.lenght > 0) {%>
+    <p>There is no modal registerd.</p>
+<% } else { %>
+    <% locals.modals.forEach(modal => { %>
+        <div>
+            <p><%= modal.modalName %></p>
+            <a href="/developer/dronemodal/viewModal/<%= modal._id %>">View</a>
+            <br>
+        </div>
+    <% }) %>
+<% } %>
+<!-- <% %>
+<% %>
+<% %> -->

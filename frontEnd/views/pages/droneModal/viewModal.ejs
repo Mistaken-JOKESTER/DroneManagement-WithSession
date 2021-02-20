@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../../partials/messages') %>
+    <h1><%= locals.modal.modalName %></h1>
+    <img src="data:image/png;base64, <%= locals.modal.modalImage.toString('base64') %>" alt="Modal Picture" />
+    <br>
+    <br>
+    <p>New firmware Upload</p>
+    <form action="/developer/dronemodal/uloadFirmware/<%= locals.modal._id %>" method="POST" enctype="multipart/form-data">
+        <label>
+            version
+            <input type="text" name="version">
+        </label>
+        <label>
+            Firmware file
+            <input type="file" name="firmFile">
+        </label>
+
+        <input type="submit">
+    </form>
+</body>
+</html>
