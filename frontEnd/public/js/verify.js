@@ -1,5 +1,5 @@
 function verify(id, value) {
-    fetch(`https://asroot-drone.herokuapp.com/verifyandregister/verify${value}/${id}`, {
+    fetch(`https://asroot-drone.herokuapp.com/developer/verifyandregister/verify${value}/${id}`, {
     method: 'GET',
     credentials: 'same-origin'
     })
