@@ -15,7 +15,6 @@ const path = require('path')
 const helmet = require("helmet")
 const express = require('express')
 const cors = require('cors')
-const databaseConnection = require('../databaseConnection/mongodb')
 
 //routers
 const routes = require('../routes/routes')

@@ -4,7 +4,8 @@
   "description": "This is an api to collect and manage data of your drones",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon ./index.js -e js,ejs,css"
+    "test": "nodemon ./index.js -e js,ejs,css",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
