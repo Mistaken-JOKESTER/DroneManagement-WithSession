@@ -5,13 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modlas</title>
+
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/pageHeadline.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/verify.css">
 </head>
 <body>
-    <%- include('../../partials/messages') %>
-    <h1>Drone Modlas</h1>
-    <a href="/developer/dronemodal/newModal">New Modla</a>
+    <%- include('../../partials/navbar') %>
+    <main>
+        <%- include('../../partials/messages') %>
+        <div class="pageHeading">
+            <h1>Modals</h1>
+            <a href="/developer/dronemodal/newModal"><img src="/icons/add.svg" alt="" width="40vw" style="margin-left: 80vw;" class="customerAdd"></a>
+            <hr>
+        </div>  
+        <%- include('../../partials/modals') %>
+    </main>
+<script src="/js/alert.js"></script>
 
-    <br>
-    <%- include('../../partials/modals') %>
 </body>
 </html>

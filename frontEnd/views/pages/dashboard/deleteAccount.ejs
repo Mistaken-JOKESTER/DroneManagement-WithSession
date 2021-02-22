@@ -5,25 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otp</title>
+
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/input.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/otp.css">
 </head>
 <body>
-    <h1>Otp Verification for Account deletetion</h1>
     <%- include('../../partials/messages') %>
-    <form action="/developer/home/deleteAccount" method="POST">
-        <div>
-            <label for="name">Otp</label>
-            <input 
-                type="number" 
-                name="otp"
-                value="<%= typeof locals.otp != 'undefined' ? locals.otp : '' %>"
-                required
-            >
+
+    <div class="container-fluid">
+        <div class="row center">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 otpBlock">
+                <form action="/developer/home/deleteAccount" method="POST">
+                    <p>Otp Verification</p>
+                    <div>
+                        <input 
+                            type="number" 
+                            name="otp"
+                            value="<%= typeof locals.otp != 'undefined' ? locals.otp : '' %>"
+                            required
+                        >
+                    </div>
+                    <div>
+                        <button>Submit</button>
+                    </div>
+                    <a href="/developer/home/regenerateDeleteAccountOtp">Regenerate Otp</a> ||
+                    <a href="/developer/home/cancledeleteAccount">cancle</a>
+                </form>
+                
+            </div>
+            <div class="col-sm-4"></div>
         </div>
-        <div>
-            <input type="submit">
-        </div>
-    </form>
-    <a href="/developer/home/regenerateDeleteAccountOtp">Regenerate Otp</a>
-    <a href="/developer/home/cancledeleteAccount">cancle</a>
+    </div>
+    <script src="/js/alert.js"></script>
 </body>
 </html>

@@ -5,15 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= locals.drone.droneNo %></title>
+
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/pageHeadline.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/verify.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/viewModal.css">
+    <link rel="stylesheet" href="/css/registryTable.css">
 </head>
 <body>
-    <%- include('../../partials/messages') %>
-    <h1><%= locals.drone.flightControllerNumber %></h1>
+    <%- include('../../partials/navbar') %>
+    <main>
+        <%- include('../../partials/messages') %>
+        <div class="pageHeading">
+            <h1><%= locals.drone.droneNo %></h1>
+            <a href="/developer/drones/deregister/<%= locals.drone._id %>"><img src="/icons/delete.svg" alt="" width="40vw" style="margin-left: 80vw;" class="customerAdd"></a>
+            <hr>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <h3>UUID</h3>
+                <h1><%= locals.drone.UUID %></h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Modal</h4>
+                    <h3><%= locals.drone.modalName %></h3>
+                </div>
+                <div class="col-md-6">
+                    <h4>Assiged To</h4>
+                    <h3><%= locals.drone.assignedTo %></h3>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Build Date</h4>
+                    <h3><%= locals.drone.buildDate %></h3>
+                </div>
+                <div class="col-md-6">
+                    <h4>Flight Controller Number</h4>
+                    <h3><%= locals.drone.flightControllerNumber %></h3>
+                </div>
+            </div>
+            <hr>
+        </div>
+        
+        <div class="container-fluid">
+            <h1>Key Registry</h1>
+            <%- include('../../partials/keyRegistry') %>
+            <hr>
+        </div>
+        <div class="container-fluid">
+            <h1>Log Registry</h1>
+            <%- include('../../partials/logRegistry') %>
+            <hr>
+        </div>
+    </main>
+<script src="/js/alert.js"></script>
 
-    <p><%= locals.drone.UUID %></p>
-    <p><%= locals.drone.droneNo %></p>
-    <p><%= locals.drone.buildDate %></p>
-
-    <a href='/developer/drones/deregister/<%= locals.drone._id %>'>Deregister</a>
+    <a href=''>Deregister</a>
 </body>
 </html>

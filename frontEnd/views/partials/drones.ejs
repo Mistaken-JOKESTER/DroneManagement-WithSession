@@ -1,8 +1,24 @@
-<h3>Drones......</h3>
-<% locals.drones.forEach(drone => { %>
-    <div>
-        <p><%= drone.flightControllerNumber %></p>
-        <p><%= drone.assignedTo %></p>
-        <button><a href="viewDrone/<%= drone._id %>">view</a></button>
+<% if(locals.drones.lenght == 0) {%>
+    <p>There is no modal registerd.</p>
+<% } else { %>
+    <div class="droneContainer" id="content">
+        <div class="containerTable">
+            <ul class="responsive-table" id="droneList">
+            <li class="table-header">
+                <div class="col col-1">View</div>
+                <div class="col col-2">Drone Number</div>
+                <div class="col col-3">Modal</div>
+                <div class="col col-4">Assgined To</div>
+            </li>
+            <% locals.drones.forEach(drone => { %>
+                <li class="table-row">
+                    <div class="col col-1"><a href="viewDrone/<%= drone._id %>"><button>View</button></a></div>
+                    <div class="col col-2" data-label="Number"><%= drone.droneNo %></div>
+                    <div class="col col-3" data-label="Modal"><%= drone.modalName %></div>
+                    <div class="col col-4" data-label="Email"><%= drone.assignedTo %></div>
+                </li>
+            <% }) %>
+            </ul>
+        </div>
     </div>
-<% }) %>
+<% } %>

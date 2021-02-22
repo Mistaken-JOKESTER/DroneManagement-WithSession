@@ -1,0 +1,37 @@
+<div>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th class="count">S.No.</th>
+                    <th>Version</th>
+                    <th>Date</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <% if (!locals.modal.firmwareRegistry[0]) { %>
+                    <div style="text-align: center;"><p>There are no Frimware availabe.</p></div>
+                <% } else { %>
+                    <% let count = 1 %>
+                    <% locals.modal.firmwareRegistry.forEach(firm => { %>
+                        <% let date = new Date(firm.date) %>
+                        <% let dateString = date.toDateString() %>
+                        <tr>
+                            <td class='count'><%= count %></td>
+                            <td><%= dateString %></td>
+                            <td><%= firm.version %></td>
+                            <td><a href='/developer/download/downloadFirmware/<%= locals.modal._id %>?fid=<%= firm._id %>'><button class="downbtn">Download</button></a></td>
+                        </tr>
+                        <%  count++ %>
+                    <% }) %>
+                <% } %>
+            
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+body{
+    background-image: linear-gradient(60deg, white, rgb(202, 202, 202));
+}
+
+main{
+    background-image: linear-gradient(60deg, white, rgb(202, 202, 202));
+    min-height: 100vh;
+    padding-right: 0px;
+    margin-bottom: 7rem;
+    overflow-x:hidden;
+    width: 90vw;
+}
+
+.pageHeading hr, hr{
+    background-color: black;
+}
+
+.formD{
+    margin-bottom: 20px;
+}
+
+p{
+    font-size: 14px;
+    padding-top: 4px;
+}
+
+.label{
+    font-family: sans-serif;
+    padding-bottom: 5px;
+}
+
+input, select{
+    padding:5px;
+    border-radius: 10px;
+    font-size: 1rem;
+    border: solid 2px rgba(0, 0, 0, 0);
+}
+
+input:focus, select:focus{
+    outline: none;
+    border: solid 2px rgb(239,146,144);
+}
+

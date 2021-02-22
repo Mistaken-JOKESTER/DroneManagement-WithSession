@@ -48,7 +48,7 @@ router.post('/Register', redirectDahboard, developerDataValidation, async(req, r
         await developer.save()
 
         //sending regestration mail and redirecting to login
-        //await Mail('Registration', developer.email, {name:developer.name})
+        await Mail('Registration', developer.email, {name:developer.name})
         req.flash('success_msg', 'You are registered Successfully')
         res.redirect('Login')
     } catch (e) {
@@ -118,7 +118,11 @@ router.get('/loginotp', otpredirect, async (req, res) => {
         const error_msg = req.flash('error_msg')[0]
         const warning_msg = req.flash('warning_msg')[0]
         //page for submiting otp
-        res.render('pages/login/otp')
+        res.render('pages/login/otp',{
+            success_msg,
+            error_msg,
+            warning_msg
+        })
     } catch(e) {
         console.log(e)
         return res.status(500).render('pages/505Error')
@@ -172,7 +176,7 @@ router.get('/regenerateotp', otpredirect, async (req, res) => {
             //regenrating session
             req.session.loginId = undefined
             req.flash('error_msg', 'You took to long to submit otp login again.')
-            res.redirect('login')
+            return res.redirect('login')
         } else {
             //fetching user id and user
             const id = req.session.loginId.toString().split("#");
@@ -186,6 +190,7 @@ router.get('/regenerateotp', otpredirect, async (req, res) => {
             
             //sending otp
             await developer.sendLoginOtp()
+            req.flash('success_msg', 'New otp send to your mail')
             res.redirect('loginotp')
         }
         
@@ -196,8 +201,15 @@ router.get('/regenerateotp', otpredirect, async (req, res) => {
 })
 
 //dashboard page
-router.get('/dashboard', redirectHome, (req, res) => {
+router.get('/dashboard', redirectHome, async (req, res) => {
     try{
+        const id = req.session.userId
+        const developer = await Developer.findById(id)
+        if(!developer){
+            req.session.userId = undefined
+            req.flash('errror_msg', 'Something went wrong login again.')
+            return res.redirect('login')
+        }
         //checking if any errors form previous request
         const success_msg = req.flash('success_msg')[0]
         const error_msg = req.flash('error_msg')[0]
@@ -205,7 +217,8 @@ router.get('/dashboard', redirectHome, (req, res) => {
         res.render('pages/dashboard/dashboard', {
             success_msg,
             error_msg,
-            warning_msg
+            warning_msg,
+            developer
         })
     } catch(e) {
         console.log(e)

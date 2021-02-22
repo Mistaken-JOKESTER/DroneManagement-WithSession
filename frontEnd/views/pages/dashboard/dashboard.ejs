@@ -5,16 +5,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/pageHeadline.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
-    <%- include('../../partials/messages') %>
-    <h1>Dashboar</h1>
-    <a href="/developer/home/logout">Logout</a>
-    <a href="/developer/home">Home</a>
-    <a href="/developer/password/changepassword">password change</a>
-    <a href="/developer/dronemodal/">Drone Modals</a>
-    <a href="/developer/verifyandregister/">Verify and Register</a>
-    <a href="/developer/home/deleteAccount">Delete Account</a>
-    <a href="/developer/drones/">Drones</a>
+    
+    <%- include('../../partials/navbar') %>
+    <main>
+        <%- include('../../partials/messages') %>
+        <div class="pageHeading">
+            <h1>Dashboard</h1>
+            <hr>
+        </div>
+        <% if(locals.developer) { %>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Account Details</h1>
+                        <div class="row accDetails">
+                            <div class="col-sm-3">
+                                Name:
+                            </div>
+                            <div class="col-sm-9">
+                                <%= locals.developer.name %>
+                            </div>
+                            <div class="col-sm-3">
+                                E-mail :
+                            </div>
+                            <div class="col-sm-9">
+                                <%= locals.developer.email %>
+                            </div>
+                            <div class="col-sm-3">
+                                Mobile :
+                            </div>
+                            <div class="col-sm-9">
+                                <%= locals.developer.mobile %>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Account Setting</h1>
+                        <div class="row accSetting">
+                            <div class="col-md-4">
+                                <a href="/developer/password/changepassword"><button>Password Change</button></a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="/developer/home/deleteAccount"><button>Delete Account</button></a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="/developer/home/logout"><button>Logout</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        <div class="space">
+            <hr>
+        </div>
+    </main>
+    
+    <script src="/js/alert.js"></script>
 </body>
 </html>

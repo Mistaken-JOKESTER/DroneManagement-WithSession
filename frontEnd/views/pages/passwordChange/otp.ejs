@@ -5,27 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otp</title>
+
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/input.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/otp.css">
 </head>
 <body>
-    <h1>Otp Verification for changePassword</h1>
     <%- include('../../partials/messages') %>
-    <form action="/developer/password/verifyOtp" method="POST">
-        <div>
-            <label for="name">Otp</label>
-            <input 
-                type="number" 
-                name="otp"
-                value="<%= typeof locals.otp != 'undefined' ? locals.otp : '' %>"
-                required
-            >
+
+    <div class="container-fluid">
+        <div class="row center">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 otpBlock">
+                <form action="/developer/password/verifyOtp" method="POST">
+                    <p>Otp Verification</p>
+                    <div>
+                        <input 
+                            type="number" 
+                            name="otp"
+                            value="<%= typeof locals.otp != 'undefined' ? locals.otp : '' %>"
+                            placeholder="OTP"
+                            required
+                        >
+                    </div>
+                    <div>
+                        <button>Submit</button>
+                    </div>
+                    <a href="regnerateOtp">Regenerate Otp</a> ||
+                    <a href="cancle">Cancle</a>
+                </form>
+                
+            </div>
+            <div class="col-sm-4"></div>
         </div>
-        <div>
-            <input type="submit">
-        </div>
-    </form>
-    <a href="regnerateOtp">Regenerate Otp</a>
-    <a href="cancle">Cancle</a>
-    
-    
+    </div>
+    <script src="/js/alert.js"></script>  
 </body>
 </html>

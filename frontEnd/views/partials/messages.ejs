@@ -1,17 +1,31 @@
 <% if(locals.errors){ %> 
     <% errors.forEach(error => { %>
-        <div><%= error %></div>
+        <div class="alert">
+            <span class="closebtn">&times;</span>  
+            <%= error %>
+        </div>
     <% }) %> 
 <% } %> 
 
+
+
 <% if(locals.success_msg){ %>
-    <h3><%= locals.success_msg %></h3>
+    <div class="alert success">
+        <span class="closebtn">&times;</span>  
+        <%= locals.success_msg %>
+    </div>
 <% } %> 
 
 <% if(locals.error_msg){ %>
-    <%= locals.error_msg %>
+    <div class="alert">
+        <span class="closebtn">&times;</span>  
+        <%= locals.error_msg %>
+    </div>
 <% } %> 
 
 <% if(locals.warning_msg){ %>
-      <%= locals.warning_msg %>
+    <div class="alert warning">
+        <span class="closebtn">&times;</span>  
+        <%= locals.warning_msg %>
+    </div>
 <% } %>

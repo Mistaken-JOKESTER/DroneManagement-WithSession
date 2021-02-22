@@ -7,11 +7,12 @@ function verify(id, value) {
         return response.json()})
     .then(data => {
         if(data.success){
-            document.getElementById(`id${id}`).style.display = 'none'
+            document.getElementById(`id${id}`).style.backgroundColor = 'green'
             document.getElementById(`id${id}`).disabled = true
         }
     })
     .catch((error) => {
         console.error('Error:', error);
+        document.getElementById(`id${id}`).style.backgroundColor = 'red'
     })
 }

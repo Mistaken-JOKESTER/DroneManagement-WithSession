@@ -1,45 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/css/test.css">
-    <base href="/">
-    <title>Document</title>
+    <title>Verification</title>
+
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/pageHeadline.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/verify.css">
 </head>
+
 <body>
-    <h1>Verification and Registration</h1>
-    <%- include('../../partials/messages') %>
-    <br>
-    <a href="/developer//verifyandregister/registercustomer">Register Customer</a>
-    <br>
-    <h3>CUSTOMERS</h3>
-    <hr>
-    <% if(locals.customers) { %>
-        <% locals.customers.forEach(customer => { %>
-            <div>
-                <p><%= customer.email %></p>
-                <button onclick='verify("<%= customer._id %>", "customer")' id="id<%= customer._id %>">Verify</button>
-            </div>
-            <br>
-        <% }) %>
-    <% } %>
-
-    <h3>DEVELOPERS</h3>
-    <hr>
-    <% if(locals.developers) { %>
-        <% locals.developers.forEach(developer => { %>
-            <div>
-                <p><%= developer.email %></p>
-                <button onclick='verify("<%= developer._id %>", "developer")' id="id<%= developer._id %>">Verify</button>
-            </div>
-            <br>
-        <% }) %>
-    <% } %>
-
+    <%- include('../../partials/navbar') %>
+    <main>
+        <%- include('../../partials/messages') %>
+        <div class="pageHeading">
+            <h1>Verification</h1>
+            <a href="/developer//verifyandregister/registercustomer"><img src="/icons/customer.svg" alt="" width="40vw" style="margin-left: 80vw;" class="customerAdd"></a>
+            <hr>
+        </div>
+        <% if(locals.customers.length) { %>
+                <div>
+                    <h1>Customers</h1>
+                </div>
+                <div class="droneContainer" id="content">
+                    <div class="containerTable">
+                        <ul class="responsive-table" id="droneList">
+                        <li class="table-header">
+                            <div class="col col-1">Verify</div>
+                            <div class="col col-2">Name</div>
+                            <div class="col col-3">Email</div>
+                            <div class="col col-4">Mobile</div>
+                        </li>
+                        <% locals.customers.forEach(customer => { %>
+                            <li class="table-row">
+                                <div class="col col-1"><button onclick='verify("<%= customer._id %>", "customer")' id="id<%= customer._id %>">Verify</button></div>
+                                <div class="col col-3" data-label="Name"><%= customer.name %></div>
+                                <div class="col col-2" data-label="E-Mail"><%= customer.email %></div>
+                                <div class="col col-4" data-label="Mobile"><%= customer.mobile %></div>
+                            </li>
+                        <% }) %>
+                        </ul>
+                    </div>
+                </div>
+        <% } %>
+        <% if(locals.developers.length) { %>
+                <div>
+                    <h1>Developers</h1>
+                </div>
+                <div class="droneContainer" id="content">
+                    <div class="containerTable">
+                        <ul class="responsive-table" id="droneList">
+                        <li class="table-header">
+                            <div class="col col-1">Verify</div>
+                            <div class="col col-2">Name</div>
+                            <div class="col col-3">Email</div>
+                            <div class="col col-4">Mobile</div>
+                        </li>
+                        <% locals.developers.forEach(developer => { %>
+                            <li class="table-row">
+                                <div class="col col-1"><button onclick='verify("<%= developer._id %>", "developer")' id="id<%= developer._id %>">Verify</button></div>
+                                <div class="col col-3" data-label="Name"><%= developer.name %></div>
+                                <div class="col col-2" data-label="E-Mail"><%= developer.email %></div>
+                                <div class="col col-4" data-label="Mobile"><%= developer.mobile %></div>
+                            </li>
+                        <% }) %>  
+                        </ul> 
+                    </div>
+                </div>
+        <% } %>
+    </main>
     <script src="/js/verify.js"></script>
+    <script src="/js/alert.js"></script>
 </body>
+
 </html>

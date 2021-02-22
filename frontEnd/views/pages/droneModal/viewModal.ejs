@@ -4,26 +4,168 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= locals.modal.modalName %></title>
+
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/pageHeadline.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/verify.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/viewModal.css">
+    <link rel="stylesheet" href="/css/registryTable.css">
 </head>
 <body>
-    <%- include('../../partials/messages') %>
-    <h1><%= locals.modal.modalName %></h1>
-    <img src="data:image/png;base64, <%= locals.modal.modalImage.toString('base64') %>" alt="Modal Picture" />
-    <br>
-    <br>
-    <p>New firmware Upload</p>
-    <form action="/developer/dronemodal/uloadFirmware/<%= locals.modal._id %>" method="POST" enctype="multipart/form-data">
-        <label>
-            version
-            <input type="text" name="version">
-        </label>
-        <label>
-            Firmware file
-            <input type="file" name="firmFile">
-        </label>
+    <%- include('../../partials/navbar') %>
+    <main>
+        <%- include('../../partials/messages') %>
+        <div class="pageHeading">
+            <h1><%= locals.modal.modalName %></h1>
+            <a href="/developer/dronemodal/newModal"><img src="/icons/add.svg" alt="" width="40vw" style="margin-left: 80vw;" class="customerAdd"></a>
+            <hr>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4 modalImg">
+                    <img src="data:image/png;base64, <%= locals.modal.modalImage.toString('base64') %>" alt="Modal Picture" />
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row modalData">
+                                Modal Number
+                            </div>
+                            <div class="row modalData">
+                                Wing Type
+                            </div>
+                            <div class="row modalData">
+                                Category
+                            </div>
+                            <div class="row modalData">
+                                Fuel Capacity
+                            </div>
+                            <div class="row modalData">
+                                Propeller Details
+                            </div>
+                            <div class="row modalData">
+                                Max TakeOff Weight
+                            </div>
+                            <div class="row modalData">
+                                Max Height Attainable
+                            </div>
+                            <div class="row modalData">
+                                Compatible Payload
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row modalData">
+                                <%= modal.modalNumber %>
+                            </div>
+                            <div class="row modalData">
+                                <%= modal.wingType %>
+                            </div>
+                            <div class="row modalData">
+                                <%= modal.droneCategoryType %>
+                            </div>
+                            <div class="row modalData">
+                                <%= modal.enginePower %>
+                            </div>
+                            <div class="row modalData">
+                                <%= modal.propellerDetails %>
+                            </div>
+                            <div class="row modalData">
+                                <%= modal.maxTakeOffWeight %>
+                            </div>
+                            <div class="row modalData">
+                                <%= modal.maxHeightAttainable %>
+                            </div>
+                            <div class="row modalData">
+                                <%= modal.compatiblePayload %>
+                            </div>
+                        </div>  
+                    </div>   
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <h1>Purpose of Operation</h1>
+                <p><%= modal.purposeOfOperation %></p>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>Engine Type</p>
+                    <h3><%= modal.engineType %></h3>
+                </div>
+                <div class="col-sm-4">
+                    <p>Engine Power</p>
+                    <h3><%= modal.enginePower %></h3>
+                </div>
+                <div class="col-sm-4">
+                    <p>Engine Count</p>
+                    <h3><%= modal.engineCount %></h3>
+                </div>
+            </div>
 
-        <input type="submit">
-    </form>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>Max Endurance</p>
+                    <h3><%= modal.maxEndurance %></h3>
+                </div>
+                <div class="col-sm-4">
+                    <p>Max Speed</p>
+                    <h3><%= modal.maxSpeed %></h3>
+                </div>
+                <div class="col-sm-4">
+                    <p>Max Range</p>
+                    <h3><%= modal.maxRange %></h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>Lenght</p>
+                    <h3><%= modal.length %></h3>
+                </div>
+                <div class="col-sm-4">
+                    <p>Height</p>
+                    <h3><%= modal.height %></h3>
+                </div>
+                <div class="col-sm-4">
+                    <p>Breadth</p>
+                    <h3><%= modal.breadth %></h3>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h1>Update Firmware</h1>
+        <form action="/developer/dronemodal/uloadFirmware/<%= locals.modal._id %>" method="POST" enctype="multipart/form-data">
+            <div class="container-fluid">
+                <div class="row">
+                        <div class="col-md-4">
+                            <p>Version (XX.XX.XX)</p>
+                            <input type="text" name="version">
+                        </div>
+                        <div class="col-md-4">
+                            <p>FirmWare File</p>
+                            <input type="file" name="firmFile">
+                        </div>
+                        <div class="col-md-4">
+                            <button>Upload</button>
+                        </div>
+                </div>
+            </div>
+        </form>
+
+        <hr>
+        <div class="container-fluid">
+            <h1>FirmWare Registry</h1>
+            <%- include('../../partials/firmwareRegistry') %>
+        </div>
+    </main>
+<script src="/js/alert.js"></script>
 </body>
 </html>

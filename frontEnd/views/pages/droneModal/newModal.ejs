@@ -5,218 +5,344 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Modal</title>
 
-    <link rel="stylesheet" href="../../../CSS/Modals/New Modal/newModal.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/pageHeadline.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/newModal.css">
 </head>
 
 <body>
-    <%- include('../../partials/messages') %>
-    <main>
-        <h1>New Modal Registration Form</h1>
-        <hr>
-    </main>
-    <div id="regForm">
-        <form id="Form" method='POST' action='/developer/dronemodal/newmodal'>
-            <label class="custom-field">
-                <input 
-                    type="text" 
-                    name="modalName"
-                    value="<%= typeof locals.modalName != 'undefined' ? locals.modalName : '' %>" 
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.modalName ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Modal Name</span>
-                <p><em class="red">*</em><em>Aplhanumeric(capatilized)</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="text" 
-                    name="modalNumber"
-                    value="<%= typeof locals.modalNumber != 'undefined' ? locals.modalNumber : '' %>" 
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.modalNumber ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Modal Number</span>
-                <p><em class="red">*</em><em>Aplhanumeric(capatilized)</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="text" 
-                    name="wingType" 
-                    value="<%= typeof locals.wingType != 'undefined' ? locals.wingType : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.wingType ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Wing Type</span>
-                <p><em class="red">*</em><em>Aplhabatic Only</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="maxTakeOffWeight"
-                    value="<%= typeof locals.maxTakeOffWeight != 'undefined' ? locals.maxTakeOffWeight : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.maxTakeOffWeigh ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Max Take Off Weight</span>
-                <p><em class="red">*</em><em>In Kg Only</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="maxHeightAttainable" 
-                    value="<%= typeof locals.maxHeightAttainable != 'undefined' ? locals.maxHeightAttainable : '' %>" 
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.maxHeightAttainable ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Max Height Attainable</span>
-                <p><em class="red">*</em><em>In Km Only</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="compatiblePayload"
-                    value="<%= typeof locals.compatiblePayload != 'undefined' ? locals.compatiblePayload : '' %>" 
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.compatiblePayload ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Compatible Playload</span>
-                <p><em class="red">*</em><em>In gm Only</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="text" 
-                    name="droneCategoryType" 
-                    value="<%= typeof locals.droneCategoryType != 'undefined' ? locals.droneCategoryType : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.droneCategoryType ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Drone Category Type</span>
-                <p><em class="red">*</em><em>Alphabetic Only</em></p>
-            </label>
-            <label class="custom-field poo">
-                <textarea 
-                    id="w3review" 
-                    name="purposeOfOperation" 
-                    rows="4" 
-                    cols="50"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.purposeOfOperation ? 'red' : 'green' %>;"
-                ><%= typeof locals.purposeOfOperation != 'undefined' ? locals.purposeOfOperation : '' %></textarea>
-                <span class="placeholder">Purpose Of Operation</span>
-                <p><em class="red">*</em><em>Brief Discription of usage</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="text" 
-                    name="engineType" 
-                    value="<%= typeof locals.engineType != 'undefined' ? locals.engineType : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.engineType ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Engine Type</span>
-                <p><em class="red">*</em><em>Aplbatic Only</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="enginePower" 
-                    value="<%= typeof locals.enginePower != 'undefined' ? locals.enginePower : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.enginePower ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Engine/Battery Power</span>
-                <p><em class="red">*</em><em>Hosrepwer</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="engineCount" 
-                    value="<%= typeof locals.engineCount != 'undefined' ? locals.engineCount : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.engineCount ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Engine/Battery Count</span>
-                <p><em class="red">*</em><em>Number Only</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="fuelCapacity"
-                    value="<%= typeof locals.fuelCapacity != 'undefined' ? locals.fuelCapacity : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.fuelCapacity ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Fuel/Battery Capacity</span>
-                <p><em class="red">*</em><em>In Liters</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="text" 
-                    name="propellerDetails"
-                    value="<%= typeof locals.propellerDetails != 'undefined' ? locals.propellerDetails : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.propellerDetails ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Propeller Details</span>
-                <p><em class="red">*</em><em>Alphabetic Only</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                type="number" 
-                name="maxEndurance" 
-                value="<%= typeof locals.maxEndurance != 'undefined' ? locals.maxEndurance : '' %>"
-                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.maxEndurance ? 'red' : 'green' %>;"
-                required>
-                <span class="placeholder">Max Endurance</span>
-                <p><em class="red">*</em><em>Max time of Flight</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="maxRange"
-                    value="<%= typeof locals.maxRange != 'undefined' ? locals.maxRange : '' %>" 
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.maxRange ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Max Range</span>
-                <p><em class="red">*</em><em>Max Communication Range</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="maxSpeed" 
-                    value="<%= typeof locals.maxSpeed != 'undefined' ? locals.maxSpeed : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.maxSpeed ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Max Speed</span>
-                <p><em class="red">*</em><em>In Km/sec</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="length" 
-                    value="<%= typeof locals.length != 'undefined' ? locals.length : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.length ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Length</span>
-                <p><em class="red">*</em><em>In meters</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="breadth" 
-                    value="<%= typeof locals.breadth != 'undefined' ? locals.breadth : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.breadth ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Breadth</span>
-                <p><em class="red">*</em><em>In meters</em></p>
-            </label>
-            <label class="custom-field">
-                <input 
-                    type="number" 
-                    name="height" 
-                    value="<%= typeof locals.height != 'undefined' ? locals.height : '' %>"
-                    style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.height ? 'red' : 'green' %>;"
-                    required>
-                <span class="placeholder">Height</span>
-                <p><em class="red">*</em><em>In meters</em></p>
-            </label>
-        </div>
-        <div class="sticky">
-            <span><a href="/developer/dronemodal/newmodal/cancle"><button>Cancle</button></a></span>
-            <span><input type="submit"></span>
-        </div>
-    
-        </form>
-    </div>
 
-    
+    <%- include('../../partials/navbar') %>
+    <main>
+        <%- include('../../partials/messages') %>
+        <div class="pageHeading">
+            <h1>Registration</h1>
+            <a href="/developer/dronemodal/newModal"><img src="/icons/add.svg" alt="" width="40vw" style="margin-left: 80vw;" class="customerAdd"></a>
+            <hr>
+        </div>
+        <form id="Form" method='POST' action='/developer/dronemodal/newmodal'>
+            <div class="container-fluid">
+                <div class="row formS">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="modalName">Modal Name</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                            type="text" 
+                            name="modalName"
+                            value="<%= typeof locals.modalName != 'undefined' ? locals.modalName : '' %>" 
+                            style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.modalName ? 'red' : 'green' %>;"
+                            required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Aplhanumeric(capatilized)</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="modalNumber">Modal Number</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="text" 
+                                name="modalNumber"
+                                value="<%= typeof locals.modalNumber != 'undefined' ? locals.modalNumber : '' %>" 
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.modalNumber ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Aplhanumeric(capatilized)</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="wingType">Wing Type</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="text" 
+                                name="wingType" 
+                                value="<%= typeof locals.wingType != 'undefined' ? locals.wingType : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.wingType ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Aplhabatic Only</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="maxTakeOffWeight">Max Take Off weight</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                            type="number" 
+                            name="maxTakeOffWeight"
+                            value="<%= typeof locals.maxTakeOffWeight != 'undefined' ? locals.maxTakeOffWeight : '' %>"
+                            style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.maxTakeOffWeigh ? 'red' : 'green' %>;"
+                            required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>In Kg Only</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="maxHeightAttainable">Max Height Attainable</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="maxHeightAttainable" 
+                                value="<%= typeof locals.maxHeightAttainable != 'undefined' ? locals.maxHeightAttainable : '' %>" 
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.maxHeightAttainable ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>In Km Only</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="">Compatible Playload</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="compatiblePayload"
+                                value="<%= typeof locals.compatiblePayload != 'undefined' ? locals.compatiblePayload : '' %>" 
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.compatiblePayload ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>In gm Only</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Drone Category Type</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="text" 
+                                name="droneCategoryType" 
+                                value="<%= typeof locals.droneCategoryType != 'undefined' ? locals.droneCategoryType : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.droneCategoryType ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Alphabetic Only</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Engine Type</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="text" 
+                                name="engineType" 
+                                value="<%= typeof locals.engineType != 'undefined' ? locals.engineType : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.engineType ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Aplbatic Only</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Engine/Battery Power</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="enginePower" 
+                                value="<%= typeof locals.enginePower != 'undefined' ? locals.enginePower : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.enginePower ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Hosrepwer</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Engine/Battery Count</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="engineCount" 
+                                value="<%= typeof locals.engineCount != 'undefined' ? locals.engineCount : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.engineCount ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Number Only</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Fuel/Battery Capacity</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="fuelCapacity"
+                                value="<%= typeof locals.fuelCapacity != 'undefined' ? locals.fuelCapacity : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.fuelCapacity ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>In Liters</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Propeller Details</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="text" 
+                                name="propellerDetails"
+                                value="<%= typeof locals.propellerDetails != 'undefined' ? locals.propellerDetails : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.propellerDetails ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Alphabetic Only</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Max Endurance</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="maxEndurance" 
+                                value="<%= typeof locals.maxEndurance != 'undefined' ? locals.maxEndurance : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.maxEndurance ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Max time of Flight</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Max Range</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="maxRange"
+                                value="<%= typeof locals.maxRange != 'undefined' ? locals.maxRange : '' %>" 
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.maxRange ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Max Communication Range</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Max Speed</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="maxSpeed" 
+                                value="<%= typeof locals.maxSpeed != 'undefined' ? locals.maxSpeed : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.maxSpeed ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>In Km/sec</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Breadth</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="breadth" 
+                                value="<%= typeof locals.breadth != 'undefined' ? locals.breadth : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.breadth ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>In meters</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Height</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="height" 
+                                value="<%= typeof locals.height != 'undefined' ? locals.height : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.height ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>In meters</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Length</label>
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="number" 
+                                name="length" 
+                                value="<%= typeof locals.length != 'undefined' ? locals.length : '' %>"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.length ? 'red' : 'green' %>;"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>In meters</em></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <label for="" >Purpose Of Operation</label>
+                        </div>
+                        <div class="row">
+                            <textarea 
+                                id="w3review" 
+                                name="purposeOfOperation" 
+                                rows="4" 
+                                cols="50"
+                                style="border: 2px solid <%= typeof locals.dataErrors != 'undefined' && locals.dataErrors.purposeOfOperation ? 'red' : 'green' %>;"
+                            ><%= typeof locals.purposeOfOperation != 'undefined' ? locals.purposeOfOperation : '' %></textarea>
+                        </div>
+                        <div class="row">
+                            <p><em class="red">*</em><em>Brief Discription of usage</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row sticky">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-4"><a href="/developer/dronemodal/cancle">Cancle</a></div>
+                    <div class="col-sm-4"><button>Submit</button></div>
+                    <div class="col-sm-2"></>
+                </div>
+            </div>
+        </form>
+    </main>
+<script src="/js/alert.js"></script>
+
 </body>
 
 </html>

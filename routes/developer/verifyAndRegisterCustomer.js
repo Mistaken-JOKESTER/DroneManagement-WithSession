@@ -61,7 +61,7 @@ router.post('/registerCustomer', redirectHome, customerDatavalidation, async (re
         await customer.save()
 
         //sending regestration mail and redirecting to login
-        //await Mail('Registration', customer.email, {name:customer.name})
+        await Mail('Registration', customer.email, {name:customer.name})
         req.flash('success_msg', 'Customer is registered Successfully')
         res.redirect('registerCustomer')
     } catch(e) {

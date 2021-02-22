@@ -1,13 +1,26 @@
-<% if(locals.modals.lenght > 0) {%>
+<% if(locals.modals.lenght == 0) {%>
     <p>There is no modal registerd.</p>
 <% } else { %>
-    <% locals.modals.forEach(modal => { %>
-        <div>
-            <p><%= modal.modalName %></p>
-            <a href="/developer/dronemodal/viewModal/<%= modal._id %>">View</a>
-            <br>
+    <div class="droneContainer" id="content">
+        <div class="containerTable">
+            <ul class="responsive-table" id="droneList">
+            <li class="table-header">
+                <div class="col col-1">View</div>
+                <div class="col col-2">Number</div>
+                <div class="col col-3">Name</div>
+                <div class="col col-4">Drones</div>
+            </li>
+            <% locals.modals.forEach(modal => { %>
+                <li class="table-row">
+                    <div class="col col-1"><a href="/developer/dronemodal/viewModal/<%= modal._id %>"><button>View</button></a></div>
+                    <div class="col col-2" data-label="Number"><%= modal.modalNumber %></div>
+                    <div class="col col-3" data-label="Name"><%= modal.modalName %></div>
+                    <div class="col col-4" data-label="Drones"><%= modal.inAir %></div>
+                </li>
+            <% }) %>
+            </ul>
         </div>
-    <% }) %>
+    </div>
 <% } %>
 <!-- <% %>
 <% %>

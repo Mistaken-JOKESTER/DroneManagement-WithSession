@@ -29,14 +29,17 @@ const droneModalSchema = new mongoose.Schema({
     },
     maxTakeOffWeight:{
         type:Number,
+        trim:true,
         required:true
     },
     maxHeightAttainable:{
         type:Number,
+        trim:true,
         required:true
     },
     compatiblePayload:{
         type:Number,
+        trim:true,
         required:true
     },
     droneCategoryType:{
@@ -63,14 +66,17 @@ const droneModalSchema = new mongoose.Schema({
     },
     enginePower:{
         type:Number,
+        trim:true,
         required:true
     },
     engineCount:{
         type:Number,
+        trim:true,
         required:true
     },
     fuelCapacity:{
         type:Number,
+        trim:true,
         required:true
     },
     propellerDetails:{
@@ -81,26 +87,32 @@ const droneModalSchema = new mongoose.Schema({
     },
     maxEndurance:{
         type:Number,
+        trim:true,
         required:true
     },
     maxRange:{
         type:Number,
+        trim:true,
         required:true
     },
     maxSpeed:{
         type:Number,
+        trim:true,
         required:true
     },
     length:{
         type:Number,
+        trim:true,
         required:true
     },
     breadth:{
         type:Number,
+        trim:true,
         required:true
     },
     height:{
         type:Number,
+        trim:true,
         required:true
     },
     inAir:{

@@ -1,0 +1,45 @@
+
+main{
+    background-image: linear-gradient(60deg, white, rgb(202, 202, 202));
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.accDetails div{
+    font-size: 150%;
+    margin-bottom: 20px;
+}
+
+.accDetails div:nth-child(2){
+    text-transform: capitalize;
+}
+
+.accSetting{
+    text-align: center;
+}
+
+button{
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: solid 1.5px tomato;
+    font-size: 1rem;
+    background-color: white;
+}
+
+button:hover{
+    border: solid 1.5px #ffffff;
+    font-size: 1rem;
+    background-color: tomato;
+    color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    
+}
+
+@media only screen and (max-width: 576px) {
+    .accDetails div:nth-child(2n-1){
+        font-size: 100%;
+    }
+}

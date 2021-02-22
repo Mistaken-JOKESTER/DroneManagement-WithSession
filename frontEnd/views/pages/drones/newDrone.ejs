@@ -4,54 +4,121 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>New Drone</title>
+
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/pageHeadline.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/newDrone.css">
 </head>
 <body>
-    <h1>New Modals</h1>
-    <%- include('../../partials/messages') %>
-    <form action="/developer/drones/newDrone" method="POST">
-        <label>
-            <select name="modalId" id="modalSelect" required>
-                <option value="">Sletect Modal</option>
-                <% locals.modals.forEach( modal => { %>
-                    <%  if(locals.modalName || modal.modalName == locals.modalName){ %>
-                        <option value="<%= modal._id %>" selected>
-                            <%= modal.modalName %>
-                        </option>
-                    <% } else { %>
-                        <option value="<%= modal._id %>">
-                            <%= modal.modalName %>
-                        </option>
-                    <% } %>
-                <% }) %>
-            </select>
-        </label>
-        <label>
-            Flignt Controller No
-            <input 
-                type="text" 
-                name="flightControllerNumber" 
-                value="<%= typeof locals.flightControllerNumber != 'undefined' ? locals.flightControllerNumber : '' %>"
-                required>  
-        </label>
-        <label>
-            Manufactring Date
-            <input 
-                type="date" 
-                name="buildDate"
-                value="<%= typeof locals.buildDate != 'undefined' ? locals.buildDate : '' %>"
-                required>
-        </label>
-        <label>
-            assignedTO
-            <input 
-                type="email" 
-                name="assignedTo" 
-                value="<%= typeof locals.assignedTo != 'undefined' ? locals.assignedTo : '' %>"
-                required>
-        </label> 
+    <%- include('../../partials/navbar') %>
+    <main>
+        <%- include('../../partials/messages') %>
+        <div class="pageHeading">
+            <h1>New Drone</h1>
+            <a href="/developer/drones/"><button>Cancel</button></a>
+            <hr>
+        </div>
+        <form action="/developer/drones/newDrone" method="POST">
+            <div class="container-fluid center">
+                <div class="row formD">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div class="row label">
+                            Select Modal of drone
+                        </div>
+                        <div class="row">
+                            <select name="modalId" id="modalSelect" required>
+                                <option value="">Sletect Modal</option>
+                                <% locals.modals.forEach( modal => { %>
+                                    <%  if(locals.modalName || modal.modalName == locals.modalName){ %>
+                                        <option value="<%= modal._id %>" selected>
+                                            <%= modal.modalName %>
+                                        </option>
+                                    <% } else { %>
+                                        <option value="<%= modal._id %>">
+                                            <%= modal.modalName %>
+                                        </option>
+                                    <% } %>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+                <div class="row formD">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div class="row label">
+                            Flignt Controller No
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="text" 
+                                name="flightControllerNumber" 
+                                value="<%= typeof locals.flightControllerNumber != 'undefined' ? locals.flightControllerNumber : '' %>"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p>* Must be Aplhanumeric</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div class="row label">
+                            Manufactring Date
+                        </div>
+                        <div class="row">
+                            <input 
+                                type="date" 
+                                name="buildDate"
+                                value="<%= typeof locals.buildDate != 'undefined' ? locals.buildDate : '' %>"
+                                required>
+                        </div>
+                        <div class="row">
+                            <p>* Future Dates not allowed.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div class="row label">
+                            Customer Email
+                        </div>
+                        <div class="row">
+                            <input 
+                            type="email" 
+                            name="assignedTo" 
+                            value="<%= typeof locals.assignedTo != 'undefined' ? locals.assignedTo : '' %>"
+                            required>
+                        </div>
+                        <div class="row">
+                            <p>* Customer Must be registered</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <button>Submit</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+            </div>
+        </form>
+    </main>
+<script src="/js/alert.js"></script>
 
-        <input type="submit">
-    </form>
 </body>
 </html>

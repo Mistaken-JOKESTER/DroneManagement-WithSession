@@ -10,7 +10,7 @@ const compressImage = require('../../middleware/upload/imageCompress')
 //to be constructed
 router.get('/', redirectHome, async (req, res) => {
     try{
-        const modals = await DroneModal.find({}, {_id:1, modalName:1, modalNumber:1, modalImage: 1, inAir:1})
+        const modals = await DroneModal.find({}, {_id:1, modalName:1, modalNumber:1, inAir:1})
 
         //cheching ig any message present form previous redirect
         const success_msg = req.flash('success_msg')[0]
@@ -131,7 +131,7 @@ router.post('/uloadImgandFirm', redirectHome, imageAndFirmwareUpload, async (req
 
         req.session.regestringModal = undefined
         req.flash('success_msg', `${build.modalName} is registered succesfully`)
-        res.send('Done')
+        res.redirect('/developer/dronemodal/')
     } catch(e) {
         console.log(e)
         res.render('pages/505Error')
@@ -142,7 +142,7 @@ router.get('/cancle', redirectHome, (req, res) => {
     try{
         req.session.regestringModal = undefined
         req.flash('success_msg', 'Modal registrtion is cancled.')
-        req.redirect('/developer/dronemodal/')
+        res.redirect('/developer/dronemodal/')
     } catch(e) {
         console.log(e)
         res.render('pages/505Error')
@@ -157,7 +157,7 @@ router.get('/viewModal/:id', redirectHome, async (req, res) => {
                 return res.redirect(`/developer/dronemodal/viewModal/${id}`)
             }
         const modal = await DroneModal.findById(id, {
-            'latestFirmware.fieldname': 0, 'latestFirmware.originalname': 0, 'latestFirmware.encoding': 0, 'latestFirmware.mimetype': 0, 'latestFirmware.buffer': 0, 'latestFirmware.size': 0,
+            latestFirmware:0,
             'firmwareRegistry.fieldname': 0, 'firmwareRegistry.originalname': 0, 'firmwareRegistry.encoding': 0, 'firmwareRegistry.mimetype': 0, 'firmwareRegistry.buffer': 0, 'firmwareRegistry.size': 0
         })
 
@@ -186,7 +186,6 @@ router.get('/viewModal/:id', redirectHome, async (req, res) => {
 router.post('/uloadFirmware/:id', redirectHome, uploadFirm, async (req, res) => {
     {
         try{
-            console.log(req.file)
             const id = req.params.id
             if(!id){
                 req.flash('error_msg', 'Please provide id of modal')
@@ -213,7 +212,6 @@ router.post('/uloadFirmware/:id', redirectHome, uploadFirm, async (req, res) => 
                 req.flash('error_msg', 'Firmware not upload on database try again, if problem persist contact coustmer sercvice')
                 return res.redirect(`/developer/dronemodal/viewModal/${id}`)
             }
-            console.log(modal)
 
             if(!modal){
                 req.flash('error_msg', 'Modal you are uloading is not present in database')

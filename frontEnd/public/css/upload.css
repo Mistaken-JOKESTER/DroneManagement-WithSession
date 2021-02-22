@@ -1,0 +1,42 @@
+body{
+    background-image: linear-gradient(60deg, white, rgb(202, 202, 202));
+}
+main{
+    background-image: linear-gradient(60deg, white, rgb(202, 202, 202));
+    padding-right: 0px;
+    margin-bottom: 7rem;
+    overflow-x:hidden;
+}
+
+.pageHeading hr, hr{
+    background-color: black;
+    margin-bottom: 20px;
+}
+
+hr{
+    margin-top: 20px;
+}
+
+.formU div div label{
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+
+
+.formU, .formU div div{
+    text-align: center;
+}
+
+.formU div div input{
+    width: 40%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 10px;
+    border: solid 1.5px rgb(239,146,144);
+}
+
+.formU div div input:focus{
+    outline: none;
+    border: solid 2px orange;
+}

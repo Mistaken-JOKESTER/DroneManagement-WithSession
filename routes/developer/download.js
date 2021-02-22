@@ -38,7 +38,7 @@ router.get('/downloadLatestFirmware/:id', redirectHome, async (req, res) => {
 router.get('/downloadFirmware/:id', redirectHome, async (req, res) => {
     try{
         const { id } = req.params
-        const { fid } = req.body
+        const { fid } = req.query
         console.log(id, fid)
         if(!id || id == "")
             return res.status(403).send({error:{message:'Provide a modal id for latest firmware version.', id:false}})
@@ -69,9 +69,10 @@ router.get('/downloadFirmware/:id', redirectHome, async (req, res) => {
     }
 })
 
-router.get('/log', redirectHome, async (req, res) => {
+router.get('/log/:id', redirectHome, async (req, res) => {
     try{
-        const { id, lid } = req.query
+        const { id } = req.params
+        const { lid } = req.query
         console.log(id, lid)
         if(!id || !lid || id == '' || lid == '')
             return res.status(403).send({error:{message:'Invalid Reqeust.', id:id&&1, lid:lid&&1}})
@@ -101,9 +102,10 @@ router.get('/log', redirectHome, async (req, res) => {
     }
 })
 
-router.get('/key', redirectHome, async (req, res) => {
+router.get('/key/:id', redirectHome, async (req, res) => {
     try{
-        const { id, kid } = req.query
+        const { id } = req.params
+        const { kid } = req.query
         if(!id || !kid || id == '' || kid == '')
             return res.status(403).send({error:{message:'Invalid Reqeust.', id:id&&1, kid:kid&&1}})
 

@@ -107,7 +107,7 @@ developerSchema.methods.sendLoginOtp = async function () {
     await this.save()
 
     //sending otp in mail
-    //await Mail('Login', this.email, {name:this.name, otp})
+    await Mail('Login', this.email, {name:this.name, otp})
     return 
 }
 
@@ -131,7 +131,7 @@ developerSchema.methods.sendPassChangeOtp = async function (){
     await this.save()
 
     //sending otp in mail
-    //await Mail('PasswordChange', this.email, {name:this.name, otp})
+    await Mail('PasswordChange', this.email, {name:this.name, otp})
     return 
 }
 
@@ -158,11 +158,11 @@ developerSchema.methods.sendDeleteAccountOtp = async function () {
     await this.save()
 
     //sending otp in mail
-    //await Mail('AccountDeleteRequest', this.email, {name:this.name, otp})
+    await Mail('AccountDeleteRequest', this.email, {name:this.name, otp})
     return 
 }
 
-developerSchema.methods.verifyDeleteAccountOtp = function (otp){
+developerSchema.methods.verifyDeleteAccountOtp = async function (otp){
     //checking time of otp
     const timeLasped = Date.now() - this.accountDelete.otp.time
     if(timeLasped > 120000)
@@ -172,7 +172,7 @@ developerSchema.methods.verifyDeleteAccountOtp = function (otp){
         return {valid:false, error_msg:'Otp is Invalid'}
 
     //sending mail
-    //await Mail('AccountDeleted', this.email, {name:this.name, otp})
+    await Mail('AccountDeleted', this.email, {name:this.name, otp})
     return {valid:true, error_msg:null}
 }
 

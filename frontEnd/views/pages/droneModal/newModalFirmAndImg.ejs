@@ -4,45 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Upload</title>
+
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/pageHeadline.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/upload.css">
+
 </head>
 <body>
-    <%- include('../../partials/messages') %>
-    <h1>Upload Image and Firmware of modal</h1>
-    <form action="/developer/dronemodal/uloadImgandFirm" method="POST" enctype="multipart/form-data">
-        <div>
-            <label for="imageFile">
-                Version 
-                <input type="text"
-                    name="version"
-                    value="1.0.0"
-                    required
-                >
-            </label>
+    <%- include('../../partials/navbar') %>
+    <main>
+        <%- include('../../partials/messages') %>
+        <div class="pageHeading">
+            <h1>Upload</h1>
+            <a href="/developer/dronemodal/newModal"><img src="/icons/add.svg" alt="" width="40vw" style="margin-left: 80vw;" class="customerAdd"></a>
+            <hr>
         </div>
-        <div>
-            <label for="imageFile">
-                Image
-                <input type="file"
-                    name="imageFile"
-                    accept="image/*"
-                    required
-                >
-            </label>
-        </div>
-        <div>
-            <label for="firmFile">
-                Firmware
-                <input type="file"
-                    name="firmFile"
-                    accept="bin/*"
-                    required
-                >
-            </label>
-        </div>
-        <div>
-            <input type="submit">
-        </div>
-    </form>
+        <form action="/developer/dronemodal/uloadImgandFirm" method="POST" enctype="multipart/form-data">
+            <div class="continer-fluid">
+                <div class="row formU">
+                    <div class="col-12">
+                        <div class="row">
+                            <label for="version">Version</label>
+                        </div>
+                        <div class="row">
+                            <input type="text"
+                                name="version"
+                                value="1.0.0"
+                                required
+                            >
+                        </div>
+                        <div class="row">
+                            <p>* Must be of type XX.XX.XX</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-12">
+                        <div class="row">
+                            <label for="version">Image of Modal</label>
+                        </div>
+                        <div class="row">
+                            <input type="file"
+                                name="imageFile"
+                                accept="image/*"
+                                required
+                            >
+                        </div>
+                        <div class="row">
+                            <p>* Must be of jpg/jpeg/png and less than 10MB</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-12">
+                        <div class="row">
+                            <label for="version">Firmware of Modal</label>
+                        </div>
+                        <div class="row">
+                            <input type="file"
+                                name="firmFile"
+                                accept="bin/*"
+                                required
+                            >
+                        </div>
+                        <div class="row">
+                            <p>* Must be of bin file and less than 10MB</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-12 center">
+                        <button>Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+<script src="/js/alert.js"></script>
 </body>
 </html>

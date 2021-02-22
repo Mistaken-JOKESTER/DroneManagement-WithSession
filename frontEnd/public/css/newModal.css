@@ -1,0 +1,76 @@
+body{
+    background-image: linear-gradient(60deg, white, rgb(202, 202, 202));
+}
+
+main{
+    background-image: linear-gradient(60deg, white, rgb(202, 202, 202));
+    min-height: 100vh;
+    padding-right: 0px;
+    margin-bottom: 7rem;
+    overflow-x:hidden;
+}
+
+.navbar{
+    z-index: 100;
+}
+
+.pageHeading hr{
+    background-color: black;
+}
+
+.formS div div input{
+    width: 80%;
+    padding: 4px;
+    font-size: .8rem;
+    border-radius: 5px;
+}
+
+.formS div{
+    padding-bottom: 5px;
+}
+
+.formS div div label{
+    font-weight: 300;
+}
+
+.forms div div p{
+    font-size: 14px;
+}
+
+.red{
+    color: red;
+}
+
+.sticky{
+    height: 10vh;
+    background-color: rgb(218, 218, 218);
+    border-top: solid 5px rgb(29, 29, 29);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin-left: 5rem;
+}
+
+.sticky div a{
+    background-color: rgba(255, 255, 255, 0);
+    text-decoration: none;
+    color: rgb(59, 59, 59);
+    font-family: sans-serif;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 100%;
+    width: 150px;
+    border: 2px solid rgb(239,146,144);
+    text-decoration: none;
+
+}
+
+@media only screen and (max-width: 600px) {
+    .sticky{
+        margin-bottom: 5rem;
+        margin-left: 0px;
+    }
+}

@@ -1,0 +1,26 @@
+main{
+    overflow-x: hidden;
+    padding-bottom: 8rem;
+}
+
+input{
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    border: 2px solid rgb(239,146,144);
+}
+
+button{
+    margin-top: 20px;
+}
+
+.modalData{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.modalImg img{
+    border-radius: 10px;
+    margin-top: 20px;
+}

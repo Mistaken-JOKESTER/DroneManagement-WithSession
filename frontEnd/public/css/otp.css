@@ -1,0 +1,73 @@
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(45deg, rgb(255, 52, 52), rgba(59, 45, 255, 0.623));
+    background-repeat: no-repeat;
+    height: 100vh;
+    font-family: sans-serif;
+}
+
+.row{
+    margin: 20vh 0px 0px 0px;
+}
+
+.otpBlock{
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.342);
+}
+
+.otpBlock form{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.otpBlock form p{
+    margin: 20px;
+    font-size: 110%;
+}
+
+input{
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    padding:10px;
+}
+
+.center {
+    text-align: center;
+}
+
+a {
+    font-size: 14px;
+    color: white;
+    margin: 15px 0px 10px 0;
+}
+
+input {
+    margin: 0;
+    margin: auto;
+}
+
+button {
+    margin: 20px;
+    border-radius: 20px;
+    border: solid 2px white;
+    color: black;
+}
+
+input:focus,
+button:focus {
+    border: none;
+    outline: none;
+}
+
+@media only screen and (max-width: 768px) {
+    input {
+        padding: 2%;
+    }
+}

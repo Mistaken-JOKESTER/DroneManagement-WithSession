@@ -1,0 +1,38 @@
+<div>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th class="count">S.No.</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <% if (!locals.drone.logRegistry[0]) { %>
+                    <div style="text-align: center;"><p>There are no Frimware availabe.</p></div>
+                <% } else { %>
+                    <% let count = 1 %>
+                    <% locals.drone.logRegistry.forEach(log => { %>
+                        <% let date = new Date(log.date) %>
+                        <% let dateString = date.toDateString() %>
+                        <% let time = date.toTimeString() %>
+                        <tr>
+                            <td class='count'><%= count %></td>
+                            <td><%= dateString %></td>
+                            <td><%= time %></td>
+                            <td><a href='/developer/download/log/<%= locals.drone._id %>?lid=<%= log._id %>'><button class="downbtn">Download</button></a></td>
+                        </tr>
+                        <%  count++ %>
+                    <% }) %>
+                <% } %>
+            
+            </tbody>
+        </table>
+    </div>
+</div>

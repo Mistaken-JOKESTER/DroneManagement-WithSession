@@ -6,7 +6,14 @@ const { redirectDahboard, redirectHome, otpredirect } = require('../../middlewar
 
 router.get('/forgotPassword', redirectDahboard, (req, res) => {
     try{
-        res.render('pages/passwordChange/forgotpassword')
+        const success_msg = req.flash('success_msg')[0]
+        const error_msg = req.flash('error_msg')[0]
+        const warning_msg = req.flash('warning_msg')[0]
+        res.render('pages/passwordChange/forgotpassword',{
+            success_msg,
+            error_msg,
+            warning_msg
+        })
     } catch (e) {
         console.log(e)
         res.render('pages/505Error')
@@ -56,7 +63,14 @@ router.get('/changePassword', redirectHome, async (req, res) => {
 
 router.get('/verifyOtp', otpredirect, async (req,res) => {
     try{
-        res.render('pages/passwordChange/otp')
+        const success_msg = req.flash('success_msg')[0]
+        const error_msg = req.flash('error_msg')[0]
+        const warning_msg = req.flash('warning_msg')[0]
+        res.render('pages/passwordChange/otp',{
+            error_msg,
+            success_msg,
+            warning_msg
+        })
     } catch(e) {
         console.log(e)
         res.render('pages/505Error')
@@ -83,6 +97,7 @@ router.get('/regnerateOtp', otpredirect, async(req, res)=>{
                 })
             
             await developer.sendPassChangeOtp()
+            req.flash('success_msg', 'Enter the new otp sent to your mail.')
             res.redirect('/developer/password/verifyOtp')
         }
     } catch(e) {

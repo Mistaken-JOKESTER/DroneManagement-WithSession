@@ -27,6 +27,11 @@ const customerSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
+    // position:{
+    //     type:String,
+    //     trim:true,
+    //     enum:['Pilot', 'Customer'],
+    // },
     password:{
         type:String
     },
@@ -129,7 +134,7 @@ customerSchema.methods.generateAndSendOtp = async function(regenerate){
     customer.loginStatus.otp.time = Date.now()
     customer.loginStatus.otp.regenerate++
     
-    // await Mail('Login', customer.email, {otp, name:customer.name})
+    await Mail('Login', customer.email, {otp, name:customer.name})
     await customer.save()
     return loginToken
 }
@@ -183,7 +188,7 @@ customerSchema.methods.passwordChangeRequest = async function (regenerate){
     customer.passwordStatus.otp.value = otp
     customer.passwordStatus.otp.time = Date.now()
     customer.passwordStatus.otp.regenerate++
-    //Mail('PasswordChange', customer.email, {otp, name:customer.name})
+    Mail('PasswordChange', customer.email, {otp, name:customer.name})
     await customer.save()
     return passwordToken
 }
@@ -215,7 +220,7 @@ customerSchema.methods.resetPassword = async function (newPassword) {
     }
     customer.accessTokens = []
     await customer.save()
-    //Mail('PasswordChanged', customer.email, {name:customer.name})
+    Mail('PasswordChanged', customer.email, {name:customer.name})
     return
 }
 
@@ -229,7 +234,7 @@ customerSchema.methods.deleteAccountRequest = async function(regenerate){
     customer.deleteStatus.otp.value = otp
     customer.deleteStatus.otp.time = Date.now()
     customer.deleteStatus.otp.regenerate++
-    //Mail('AccountDeleteRequest', customer.email, {otp, name:customer.name})
+    Mail('AccountDeleteRequest', customer.email, {otp, name:customer.name})
     await customer.save()
     return
 }

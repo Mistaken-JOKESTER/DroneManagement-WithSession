@@ -4,36 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
+
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-    <h1>Developer Login</h1>
     <%- include('../../partials/messages') %>
-    <form action="/developer/home/Login" method="POST">
-        <div>
-            <label for="name">Email</label>
-            <input 
-                type="email" 
-                name="email"
-                value="<%= typeof locals.email != 'undefined' ? locals.email : '' %>"
-                required
-            >
+    <div class="container-fluid">
+        <a href="/developer/home/"><button>Home</button></a>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-5 imageBackground">
+                <h1>Welcome User</h1>
+                <hr>
+                <p>This website is only for Developer purpose. If you are a customer or pilot than you can register form our office or contact our support team.</p>
+                <br>
+                <p>Have a nice day...</p>
+            </div>
+            <div class="col-md-3 loginBackground">
+                <form action="/developer/home/Login" method="POST">
+                    <div>
+                        <input 
+                            type="email" 
+                            name="email"
+                            value="<%= typeof locals.email != 'undefined' ? locals.email : '' %>"
+                            placeholder="Email"
+                            required
+                        >
+                    </div>
+                    <div>
+                        <input 
+                            type="password" 
+                            name="password"
+                            value="<%= typeof locals.email != 'undefined' ? locals.email : '' %>"
+                            placeholder="Password"
+                            required
+                        >
+                    </div>
+                    <div>
+                        <button>Login</button>
+                    </div>
+                </form>
+                <div>
+                    <a href="/developer/home/Register">Creat an account.</a>
+                </div>
+                <div>
+                    <a href="/developer/password/forgotpassword">Forgot Password?</a>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
         </div>
-        <div>
-            <label for="name">Password</label>
-            <input 
-                type="password" 
-                name="password"
-                value="<%= typeof locals.email != 'undefined' ? locals.email : '' %>"
-                required
-            >
-        </div>
-        <div>
-            <input type="submit">
-        </div>
-    </form>
+    </div>
 
-    <a href="/developer/home/Register">Creat an account.</a>
-    <a href="/developer/password/forgotpassword">Forgot Password?</a>
+
+    
+    <script src="/js/alert.js"></script>
 </body>
 </html>

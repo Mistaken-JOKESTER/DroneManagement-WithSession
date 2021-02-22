@@ -4,17 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Drone Point</title>
+
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/Home.css">
 </head>
 <body>
-    <h1>Home</h1>
-    <% if(locals.logedIn) { %>
-        <button><a href="/developer/home/logout">Logout</a></button>
-        <button><a href="/developer/home/dashboard">Dashboard</a></button>
-    <% } else { %>
-        <button><a href="/developer/home/Register">Register</a></button>
-        <button><a href="/developer/home/Login">Login</a></button>
-    <% } %>
-    
+
+    <div class="grid3">
+
+    <div class="container-fluid">
+        <div class="row">
+            <h1 class="heading">Drone Point</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <img src="/images/droneIllustration.jpg" alt="Illustration" class="image">
+            </div>
+            <div class="col-md-6 headlineBox">
+                <div class="conatiner-fluid">
+                    <div class="row">
+                        <div class="col-12 headline">
+                            Your drone our responsibility. We manage all you logs and flight details and provide best quality services. This site only for developers.
+                        </div>
+                    </div>
+                    <% if(!locals.logedIn) { %>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/developer/home/Register"><button>Register</button></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/developer/home/Login"><button>Login</button></a>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/developer/home/dashboard"><button>Dashboard</button></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/developer/home/logout"><button>Log-Out</button></a>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p></p>   
 </body>
 </html>

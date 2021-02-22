@@ -99,6 +99,7 @@ router.get('/viewDrone/:id', redirectHome, async (req, res) => {
         }
 
         const drone = await Drone.findById(id)
+        console.log(drone)
         if(!drone){
             req.flash('warning_msg','Drone with given id does not exesist.')
             return res.redirect(`/developer/drones/`)
