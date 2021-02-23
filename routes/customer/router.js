@@ -241,9 +241,10 @@ router.post('/checkMyDrone', customerAuth, async (req, res) => {
             return res.status(404).send({error:{message:"Your don't own a drone with this flightController Number."}})
         }
 
-        res.send({registered:true, modalId:drone.modalId, flightControllerNumber: drone.flightControllerNumber,id:_id})
+        res.send({registered:true, modalId:drone.modalId, flightControllerNumber: drone.flightControllerNumber,id:drone._id})
     } catch(e) {
-        res.status(500).send({error:{message:"Your drone is not registered", serverDown:true}})
+        console.log(e)
+        res.status(500).send({error:{message:"Internal Server errror", serverDown:true}})
     }
 })
 
