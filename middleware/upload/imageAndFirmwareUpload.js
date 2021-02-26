@@ -29,7 +29,7 @@ function checkFileType(file, cb, req){
         }
     } else if(file.fieldname=="firmFile"){
         // allowed exte fileTypes
-        const fileTypes = /hex|application|octet-stream|bin|apj|application|octet-stream/
+        const fileTypes = /hex|application|octet-stream|bin|px4|apj|application|octet-stream/
         //check ext
         const extname = fileTypes.test(path.extname(file.originalname).toLowerCase())
 
