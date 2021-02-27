@@ -34,6 +34,13 @@ button:hover{
     color: white;
 }
 
+input{
+    border: solid 2px tomato;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 1rem;
+}
+
 @media only screen and (max-width: 768px) {
     
 }

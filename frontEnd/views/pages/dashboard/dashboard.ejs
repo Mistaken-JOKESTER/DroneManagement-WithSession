@@ -49,6 +49,31 @@
                     </div>
                 </div>
                 <hr>
+                <form action="/developer/home/updateGCS" method="POST">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>
+                            GCS Version
+                        </h1>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Current Version</p>
+                                <h3><%= locals.version %></h3>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-12">
+                                    <label for version>New Version XX.XX.XX</label>
+                                </div>
+                                <input type="text" name="version">
+                            </div>
+                            <div class="col-md-4">
+                                <button>Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <hr>
                 <div class="row">
                     <div class="col-12">
                         <h1>Account Setting</h1>

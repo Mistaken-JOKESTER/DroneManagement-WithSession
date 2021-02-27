@@ -5,8 +5,10 @@ const router= express.Router()
 const Mail = require('../../middleware/sendMail/emailTemplets')
 const developerDataValidation = require('../../middleware/developer/developerDataValidation')
 const { redirectDahboard, redirectHome, otpredirect } = require('../../middleware/developer/developerAuth')
+const GCS = require('../../modals/GCS')
 
 const Developer = require('../../modals/Developer')
+const { findOne } = require('../../modals/GCS')
 
 //login/register route
 router.get('/', (req, res) => {
@@ -203,6 +205,7 @@ router.get('/regenerateotp', otpredirect, async (req, res) => {
 //dashboard page
 router.get('/dashboard', redirectHome, async (req, res) => {
     try{
+        let version
         const id = req.session.userId
         const developer = await Developer.findById(id)
         if(!developer){
@@ -210,6 +213,16 @@ router.get('/dashboard', redirectHome, async (req, res) => {
             req.flash('errror_msg', 'Something went wrong login again.')
             return res.redirect('login')
         }
+
+        const GCSNumber = await GCS.findOne()
+        if(!GCSNumber){
+            const GCSNumber = new GCS({version:'1.0.0'})
+            await GCSNumber.save()
+            version = '1.0.0'
+        } else {
+            version = GCSNumber.version
+        }
+
         //checking if any errors form previous request
         const success_msg = req.flash('success_msg')[0]
         const error_msg = req.flash('error_msg')[0]
@@ -218,9 +231,37 @@ router.get('/dashboard', redirectHome, async (req, res) => {
             success_msg,
             error_msg,
             warning_msg,
-            developer
+            developer,
+            version
         })
     } catch(e) {
+        console.log(e)
+        res.render('pages/505Error')
+    }
+})
+
+//update GCS number
+router.post('/updateGCS',redirectHome, async (req, res) => {
+    try{
+        const { version } = req.body
+        if(!version){
+            req.flash('error_msg', 'pelase provide a vesion')
+            return res.redirect('dashboard')
+        }
+
+        if(!/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/.test(version)){
+            req.flash('error_msg', 'Please reupload, your Version was not valid XX.XX.XX')
+            return res.redirect(`dashboard`)
+        }
+        const GCSUpdate = await GCS.updateOne({},{version})
+        if(!GCSUpdate.nModified){
+             req.flash('warning_msg', 'GCS version is not updated, try again.')
+             return res.redirect('dashboard')
+        }
+
+        req.flash('success_msg', 'GCS version updated successfully.')
+        res.redirect('dashboard')
+    } catch(e){
         console.log(e)
         res.render('pages/505Error')
     }
