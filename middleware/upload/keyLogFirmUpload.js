@@ -30,7 +30,7 @@ function checkFileType(file, cb, req, value){
     } else if(value == 'log'){
         fileTypes = /application|json/
     } else if(value == 'firm'){
-        fileTypes = /hex|application|octet-stream|bin|application|octet-stream/
+        fileTypes = /hex|application|octet-stream|bin|apj|px4|application|octet-stream/
     }
     //check ext
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase())
