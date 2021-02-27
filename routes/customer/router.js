@@ -230,7 +230,7 @@ router.get('/deleteAccountRequestCancle', customerAuth, async (req, res) => {
 })
 
 //gcs version
-router.get('/GCSVersion', customerAuth, async (req, res) => {
+router.get('/GCSVersion', async (req, res) => {
     try{
         const GCSVersion = await GCS.findOne()
         if(!GCSVersion || !GCSVersion.version){

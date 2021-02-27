@@ -25,7 +25,10 @@ router.get('/', (req, res) => {
 
 router.post('/login', async (req, res) =>{
     try{
-        const { email, password } = req.body
+        const { email, password, droneId } = req.body
+
+        if(!droneId)
+            return res.status(403).send({error:{message:'Invalid email or password.', email: email && 1, password: password && 1, droneId:false}})
 
         if(!email || !password || email == '' || password == '' || !validator.isEmail(email))
             return res.status(403).send({error:{message:'Invalid email or password.', email: email && 1, password: password && 1}})
