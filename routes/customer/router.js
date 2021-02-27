@@ -229,6 +229,20 @@ router.get('/deleteAccountRequestCancle', customerAuth, async (req, res) => {
     }
 })
 
+//gcs version
+router.get('/GCSVersion', customerAuth, async (req, res) => {
+    try{
+        const GCSVersion = await GCS.findOne()
+        if(!GCSVersion || !GCSVersion.version){
+            res.send({error:{message:'GCS version not found.'}})
+        }
+        res.send({GCSVersion:GCSVersion.version})
+    } catch(e) {
+        console.log(e.message)
+        res.status(500).send({error:{message:'Server is down right now', serverDown:true}})
+    }
+})
+
 //response changed
 router.post('/checkMyDrone', customerAuth, async (req, res) => {
     try{
