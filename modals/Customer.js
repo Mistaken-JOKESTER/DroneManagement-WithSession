@@ -26,11 +26,6 @@ const customerSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
-    // position:{
-    //     type:String,
-    //     trim:true,
-    //     enum:['Pilot', 'Customer'],
-    // },
     password:{
         type:String
     },

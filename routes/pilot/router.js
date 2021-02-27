@@ -13,8 +13,6 @@ const Mail = require('../../middleware/sendMail/emailTemplets')
 const pilotAuth = require('../../middleware/pilot/pilotAuth')
 
 const Pilot = require('../../modals/Pilot')
-const Drone = require('../../modals/Drone')
-const DroneModal = require('../../modals/DroneModal')
 
 router.get('/', (req, res) => {
     try{
@@ -226,105 +224,5 @@ router.get('/deleteAccountRequestCancle', pilotAuth, async (req, res) => {
         res.status(500).send({error:{message:'Server is down right now', serverDown:true}})
     }
 })
-
-// //response changed
-// router.post('/checkMyDrone', customerAuth, async (req, res) => {
-//     try{
-//         const { flightControllerNumber } = req.body
-//         if(!req.body.flightControllerNumber)
-//             return res.status(403).send({error:{message:'Please Provide flight controller number.', flightControllerNumber:false}})
-        
-//         const drone = await Drone.findOne({flightControllerNumber: req.body.flightControllerNumber, assignedTo:req.customer.email})
-//         if(!drone){
-//             return res.status(404).send({error:{message:"Your don't own a drone with this flightController Number."}})
-//         }
-
-//         res.send({registered:true, modalId:drone.modalId, flightControllerNumber: drone.flightControllerNumber,id:drone._id})
-//     } catch(e) {
-//         console.log(e)
-//         res.status(500).send({error:{message:"Internal Server errror", serverDown:true}})
-//     }
-// })
-
-// //query to paramas
-// router.post('/flyUp/:id', customerAuth, uploadKey, async (req, res) => {
-//     try{
-//         const { id } = req.params
-//         console.log(id)
-//         if(!id || id == "")
-//             return res.status(403).send({error:{message:'Provide a drone id for key upload.', id:false}})
-
-//         if(req.multerFileUploadError){
-//             return res.status(4015).send({error:{message:'File is not valid or too loarge.'}})
-//         }
-
-//         const file =req.file
-//         console.log(file)
-//         if(!req.file){
-//             return res.status(403).send({error:{message:'Failed to upload.'}})
-//         }
-
-//         const drone = await Drone.updateOne({
-//             _id:id, 
-//             assignedTo:req.customer.email
-//         },{
-//             $addToSet:{
-//                 keyRegistry:{
-//                     ...file,
-//                     date:Date.now()
-//                 }
-//             }
-//         })
-//         console.log(drone)
-//         if(!drone.n){
-//             return res.status(404).send({error:{message:"Failed to update key, drone is not linked with your mail."}})
-//         }
-        
-
-//         res.send({message:"Your key is upadted in database."})
-//     } catch(e){
-//         console.log(e)
-//         res.status(500).send({error:{message:"Something went wrong Please try again."}})
-//     }
-// })
-
-// router.post('/flyDown/:id', customerAuth, uploadLog, async (req, res) => {
-//     try{
-//         const { id } = req.params
-//         console.log(id)
-//         if(!id || id == "")
-//             return res.status(403).send({error:{message:'Provide a drone id for key upload.', id:false}})
-
-//         if(req.multerFileUploadError){
-//             return res.status(4015).send({error:{message:'File is not valid or too loarge.'}})
-//         }
-
-//         const file =req.file
-//         console.log(file)
-//         if(!req.file){
-//             return res.status(403).send({error:{message:'Failed to upload.'}})
-//         }
-
-//         const drone = await Drone.updateOne({
-//             _id:id, 
-//             assignedTo:req.customer.email
-//         },{
-//             $addToSet:{
-//                 logRegistry:{
-//                     ...file,
-//                     date:Date.now()
-//                 }
-//             }
-//         })
-//         if(!drone.n){
-//             return res.status(404).send({error:{message:"Failed to update key, drone is not linked with your mail."}})
-//         }
-
-//         res.send({message:"Your key is upadted in database."})
-//     } catch(e){
-//         console.log(e)
-//         res.status(500).send({error:{message:"Something went wrong Please try again."}})
-//     }
-// })
 
 module.exports = router
