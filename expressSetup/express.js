@@ -9,7 +9,7 @@
 // LOGIN_ID_SECRETE
 // OPERATORBUSINESSIDENTIFIER
 // MANUFACTURERBUSINESSIDENTIFIER
-require('dotenv').config()
+//require('dotenv').config()
 
 const path = require('path')
 const helmet = require("helmet")
