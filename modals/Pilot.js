@@ -116,12 +116,12 @@ pilotSchema.statics.findByCredentials = async function(email, password){
     return pilot
 }
 
-pilotSchema.methods.generateAndSendOtp = async function(regenerate){
+pilotSchema.methods.generateAndSendOtp = async function(regenerate, droneId){
     let loginToken
     const pilot = this
     const otp = await otpGenerate()
     if(!regenerate){
-        loginToken = await jwt.sign({id: pilot._id}, process.env.LOGIN_TOKEN_SECRETE.toString(), {
+        loginToken = await jwt.sign({id: pilot._id, droneId}, process.env.LOGIN_TOKEN_SECRETE.toString(), {
             algorithm: "HS256",
             expiresIn: 300000
         })

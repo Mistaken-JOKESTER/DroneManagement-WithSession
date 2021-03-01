@@ -56,6 +56,14 @@ const droneShema = new mongoose.Schema({
             type:Date,
             default:Date.now()
         }
+    }],
+    pilotRegistry:[{
+        date:{
+            type:Date
+        },
+        email:{
+            type:String
+        }
     }]
 })
 

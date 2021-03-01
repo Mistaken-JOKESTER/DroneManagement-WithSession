@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const validator = require('validator')
 const Pilot = require('../../modals/Pilot')
+const Drone = require('../../modals/Drone')
 
 const loginTokenDecode = async (req, res, next) =>{
     try{
@@ -15,7 +16,7 @@ const loginTokenDecode = async (req, res, next) =>{
         
         
         const payload = jwt.verify(loginToken, process.env.LOGIN_TOKEN_SECRETE.toString())
-        if(!payload.id || payload.id == '')
+        if(!payload.id || payload.id == '' || !payload.droneId || payload.droneId == '')
             throw new Error('Invalid payload.')
         
         const pilot = await Pilot.findById(payload.id)
@@ -37,6 +38,21 @@ const loginTokenDecode = async (req, res, next) =>{
             return res.status(401).send({error:{message:'Opt does not match', invalid:true, expired:false, regenerate}})
         }
         
+
+        const drone = await Drone.updateOne({
+            _id:payload.droneId
+        },{
+            $addToSet:{
+                pilotRegistry:{
+                    email:pilot.email,
+                    date:Date.now()
+                }
+            }
+        })
+
+        if(!drone.nModified){
+            return res.status(403).send({error:{message:'Drone not found'}, droneId:false})
+        }
         req.pilot = pilot
         next()
     } catch(e){

@@ -13,6 +13,7 @@ const Mail = require('../../middleware/sendMail/emailTemplets')
 const pilotAuth = require('../../middleware/pilot/pilotAuth')
 
 const Pilot = require('../../modals/Pilot')
+const Drone = require('../../modals/Drone')
 
 router.get('/', (req, res) => {
     try{
@@ -28,7 +29,12 @@ router.post('/login', async (req, res) =>{
         const { email, password, droneId } = req.body
 
         if(!droneId)
-            return res.status(403).send({error:{message:'Invalid email or password.', email: email && 1, password: password && 1, droneId:false}})
+            return res.status(403).send({error:{message:'Please provide valid DroneId', email: email && 1, password: password && 1, droneId:false}})
+
+        const drone = await Drone.findById(droneId, {_id:1})
+        if(!drone){
+            return res.status(403).send({error:{message:'Please provide valid DroneId', email: email && 1, password: password && 1, droneId:false}})
+        }
 
         if(!email || !password || email == '' || password == '' || !validator.isEmail(email))
             return res.status(403).send({error:{message:'Invalid email or password.', email: email && 1, password: password && 1}})
@@ -37,7 +43,7 @@ router.post('/login', async (req, res) =>{
         if(!pilot)
             return res.status(404).send({error:{message:'Invalid email or password.'}})
         
-        const loginToken = await pilot.generateAndSendOtp(false)
+        const loginToken = await pilot.generateAndSendOtp(false, droneId)
         res.send({message:`Please valid by entering otp send to ${email}`, loginToken, regenerate:true})
     } catch(e) {
         console.log(e)
