@@ -16,6 +16,7 @@ const { uploadKey, uploadLog } = require('../../middleware/upload/keyLogFirmUplo
 const Customer = require('../../modals/Customer')
 const Drone = require('../../modals/Drone')
 const DroneModal = require('../../modals/DroneModal')
+const GCS = require('../../modals/GCS')
 
 router.get('/', (req, res) => {
     try{
@@ -234,11 +235,11 @@ router.get('/GCSVersion', async (req, res) => {
     try{
         const GCSVersion = await GCS.findOne()
         if(!GCSVersion || !GCSVersion.version){
-            res.send({error:{message:'GCS version not found.'}})
+            return res.send({error:{message:'GCS version not found.'}})
         }
         res.send({GCSVersion:GCSVersion.version})
     } catch(e) {
-        console.log(e.message)
+        console.log(e)
         res.status(500).send({error:{message:'Server is down right now', serverDown:true}})
     }
 })
