@@ -69,7 +69,12 @@ router.post('/newDrone', redirectHome, droneDataValidation, async (req, res) => 
             })
         }
 
-        const modal = await DroneModal.updateOne({_id:drone.body.data.modalId},{inAir:Number(drone.body.data.droneNo)})
+        const modal = await DroneModal.updateOne({
+                _id:drone.body.data.modalId
+            },{
+                ...req.body.modalUpdate
+            })
+
         if(!modal.nModified){
             req.flash('error_msg', 'something went wrong try again, your dorne is not registered.')
             return res.redirect('newDrone')
@@ -138,7 +143,7 @@ router.get('/deregister/:id', redirectHome, async (req, res) => {
         if(!status){
             req.flash('warning_msg','Failed to deregister drone try agian.')
             return res.redirect(`/developer/drones/viewDrone/${id}`)
-        }
+        } 
 
         await drone.remove(function (err, drone) {
             if (err){
@@ -146,6 +151,16 @@ router.get('/deregister/:id', redirectHome, async (req, res) => {
                 return res.redirect(`/developer/drones/viewDrone/${id}`)
             }
         })
+
+        const modal = await DroneModal.updateOne({_id:drone.modalId},{
+            $inc:{drones:-1},
+            $push:{availableNo:drone.droneNo}
+        })
+
+        console.log(modal)
+        if(!modal.nModified){
+            req.flash('warning_msg', "Unable to update modal of drone.")
+        }
 
         req.flash('success_msg', `Drone ${drone.flightControllerNumber} is deregistred and deleted form database.`)
         res.redirect('/developer/drones/')

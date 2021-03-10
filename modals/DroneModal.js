@@ -119,6 +119,14 @@ const droneModalSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
+    availableNo:[{
+        type:Number
+    }],
+    drones:{
+        type:Number,
+        default:0,
+        required:true
+    },
     firmwareRegistry:[{
         version:String,
         fieldname: String,

@@ -33,28 +33,6 @@ const pilotSchema = new mongoose.Schema({
     password:{
         type:String
     },
-    loginStatus:{
-        loginToken:{
-            type:String,
-            default:''
-        },
-        otp:{
-            time:{
-                type:Date,
-                default:30000000
-            },
-            value:{
-                type:Number,
-                minlength:5,
-                maxlength:5,
-                default: 00000
-            },
-            regenerate:{
-                type:Number,
-                default:0
-            }
-        }
-    },
     passwordStatus:{
         passwordToken:{
             type:String,
@@ -116,55 +94,12 @@ pilotSchema.statics.findByCredentials = async function(email, password){
     return pilot
 }
 
-pilotSchema.methods.generateAndSendOtp = async function(regenerate, droneId){
-    let loginToken
-    const pilot = this
-    const otp = await otpGenerate()
-    if(!regenerate){
-        loginToken = await jwt.sign({id: pilot._id, droneId}, process.env.LOGIN_TOKEN_SECRETE.toString(), {
-            algorithm: "HS256",
-            expiresIn: 300000
-        })
-        pilot.loginStatus.loginToken = loginToken
-        pilot.loginStatus.otp.regenerate=0
-    }
-    pilot.loginStatus.otp.value = otp
-    pilot.loginStatus.otp.time = Date.now()
-    pilot.loginStatus.otp.regenerate++
-    
-    await Mail('Login', pilot.email, {otp, name:pilot.name})
-    await pilot.save()
-    return loginToken
-}
-
-pilotSchema.methods.resetLoginStatus = async function(){
-    const pilot = this
-    pilot['loginStatus'] = {
-        loginToken:'',
-        otp:{
-            time:30000000,
-            value:00000,
-            regenerate: 0
-        }
-    }
-    await pilot.save()
-}
-
 pilotSchema.methods.permanentToken = async function(){
     let pilot = this
     const accessToken = jwt.sign({id: pilot._id}, process.env.ACCESS_TOKEN_SECRET, {
         algorithm: "HS256",
         expiresIn: "5h"
     })
-
-    pilot.loginStatus = {
-        loginToken:'',
-        otp:{
-            time:30000000,
-            value:00000,
-            regenerate: 0
-        }
-    }
 
     pilot.accessTokens.push(accessToken.toString())
     await pilot.save()

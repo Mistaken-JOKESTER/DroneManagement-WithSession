@@ -166,6 +166,8 @@ router.get('/viewModal/:id', redirectHome, async (req, res) => {
             return res.redirect(`/developer/dronemodal/`)
         }
 
+        const isdeletable = (!modal.drones && 1)
+        console.log(isdeletable)
         const success_msg = req.flash('success_msg')[0]
         const error_msg = req.flash('error_msg')[0]
         const warning_msg = req.flash('warning_msg')[0]
@@ -175,9 +177,38 @@ router.get('/viewModal/:id', redirectHome, async (req, res) => {
             modal,
             success_msg,
             error_msg,
-            warning_msg
+            warning_msg,
+            isdeletable
         })
     } catch(e) {
+        console.log(e)
+        res.render('pages/505Error')
+    }
+})
+
+router.get('/deletemodal/:id', redirectHome, async (req, res) =>{
+    try{
+        const id = req.params.id
+        if(!id){
+            req.flash('error_msg', 'Please provide id of modal')
+            return res.redirect(`/developer/dronemodal/`)
+        }
+
+        const modal = await DroneModal.findById(id)
+        if(!modal){
+            req.flash('error_msg', 'Given modal not found in database.')
+            return res.redirect(`/developer/dronemodal/viewModal/${id}`)
+        }
+
+        if(modal.drones !== 0){
+            req.flash('warning_msg', 'Can"t delete modal, drone with given modals exesist')
+            return res.redirect(`/developer/dronemodal/viewModal/${id}`)
+        }
+
+        await modal.remove()
+        req.flash('success_msg', `Modal ${modal.modalName} is deleted successfully.`)
+        res.redirect('/developer/droneModal')
+    } catch(e){
         console.log(e)
         res.render('pages/505Error')
     }
@@ -189,7 +220,7 @@ router.post('/uloadFirmware/:id', redirectHome, uploadFirm, async (req, res) => 
             const id = req.params.id
             if(!id){
                 req.flash('error_msg', 'Please provide id of modal')
-                return res.redirect(`/developer/dronemodal/viewModal/${id}`)
+                return res.redirect(`/developer/dronemodal/`)
             }
             const { version } = (JSON.parse(JSON.stringify(req.body)))
             if(!/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/.test(version)){

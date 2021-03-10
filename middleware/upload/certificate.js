@@ -12,7 +12,7 @@ const certiUpload  = multer({
 
 function checkFileType(file, cb, req, value){
     // allowed exte fileTypes
-    let fileTypes = /png|jpg|jpeg/
+    let fileTypes = /png|jpg|jpeg|pdf/
     
     //check ext
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase())

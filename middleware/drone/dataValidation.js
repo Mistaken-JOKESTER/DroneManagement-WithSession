@@ -17,7 +17,7 @@ async function droneDataValidation (req, res, next){
         if(!modalId || validator.isEmpty(modalId)){
             errors.push('Select a valid modal.')
         } else {
-            modal = await DroneModal.findById(modalId, {_id:1, modalName:1, inAir:1})
+            modal = await DroneModal.findById(modalId, {_id:1, modalName:1, inAir:1, drones:1, availableNo:1})
             if(!modal){
                 errors.push('Modal you selected doesnot exesit, select a different modal.')
             } 
@@ -51,13 +51,26 @@ async function droneDataValidation (req, res, next){
         else 
             req.body = {valid:true}
 
+        req.body.modalUpdate = {
+            drones:modal.drones+1
+        }
+
+        let droneNo = 0
+        if(modal.availableNo.length){
+            droneNo = parseInt(modal.availableNo.pop()),
+            req.body.modalUpdate.availableNo=modal.availableNo
+        } else {
+            droneNo= parseInt(modal.inAir) + 1
+            req.body.modalUpdate.inAir = droneNo
+        }
+
         req.body.data = {
             modalId:modal._id,
             assignedTo,
             flightControllerNumber,
             modalName:modal.modalName,
             buildDate,
-            droneNo:parseInt(modal.inAir) + 1
+            droneNo
         }
         next()
     } catch(e) {

@@ -26,7 +26,7 @@ function checkFileType(file, cb, req, value){
     // allowed exte fileTypes
     let fileTypes
     if(value == 'key'){
-        fileTypes = /pem|application|octet-stream/
+        fileTypes = /pem|application|octet-stream|der/
     } else if(value == 'log'){
         fileTypes = /application|json/
     } else if(value == 'firm'){

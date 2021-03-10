@@ -2,9 +2,6 @@ const validator = require('validator')
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 
-const loginTokenDecode = require('../../middleware/pilot/loginTokenDecode')
-const regenerateLoginOtp = require('../../middleware/pilot/regenerateLoginOtp')
-
 const passwordTokenDecode = require('../../middleware/pilot/passwordTokenDecode')
 const regeneratePasswordOtp = require('../../middleware/pilot/regeneratePasswordOtp')
 const resetPasswordDecode = require('../../middleware/pilot/resetPasswordDecode')
@@ -31,11 +28,6 @@ router.post('/login', async (req, res) =>{
         if(!droneId)
             return res.status(403).send({error:{message:'Please provide valid DroneId', email: email && 1, password: password && 1, droneId:false}})
 
-        const drone = await Drone.findById(droneId, {_id:1})
-        if(!drone){
-            return res.status(403).send({error:{message:'Please provide valid DroneId', email: email && 1, password: password && 1, droneId:false}})
-        }
-
         if(!email || !password || email == '' || password == '' || !validator.isEmail(email))
             return res.status(403).send({error:{message:'Invalid email or password.', email: email && 1, password: password && 1}})
 
@@ -43,30 +35,25 @@ router.post('/login', async (req, res) =>{
         if(!pilot)
             return res.status(404).send({error:{message:'Invalid email or password.'}})
         
-        const loginToken = await pilot.generateAndSendOtp(false, droneId)
-        res.send({message:`Please valid by entering otp send to ${email}`, loginToken, regenerate:true})
+        const drone = await Drone.updateOne({
+            _id:droneId
+        },{
+            $addToSet:{
+                pilotRegistry:{
+                    email:pilot.email,
+                    date:Date.now()
+                }
+            }
+        })
+
+        if(!drone.nModified){
+            return res.status(403).send({error:{message:'Drone not found'}, droneId:false})
+        }
+
+        const accessToken = await pilot.permanentToken()
+        res.send({message:`Welcome, ${pilot.name}`, accessToken})
     } catch(e) {
         console.log(e)
-        res.status(500).send({error:{message:'Server is down right now', serverDown:true}})
-    }
-})
-
-//otpvalidation --> loginOtp
-router.post('/loginOtp', loginTokenDecode, async (req, res) =>{
-    try{
-        const accessToken = await req.pilot.permanentToken()
-        res.send({message:`Welcome, ${req.pilot.name}`, accessToken})
-    } catch(e) {
-        console.log(e)
-        res.status(500).send({error:{message:'Server is down right now', serverDown:true}})
-    }
-})
-
-router.get('/regenerateLoginOtp', regenerateLoginOtp, async (req, res) => {
-    try{
-        const regenerate = req.pilot.loginStatus.otp.regenerate < 4
-        res.send({message:`Enter the new OTP sent to ${req.pilot.email}`, regenerate})
-    } catch(e) {
         res.status(500).send({error:{message:'Server is down right now', serverDown:true}})
     }
 })

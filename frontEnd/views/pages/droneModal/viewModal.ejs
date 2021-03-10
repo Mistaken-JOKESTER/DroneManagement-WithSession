@@ -22,7 +22,11 @@
         <%- include('../../partials/messages') %>
         <div class="pageHeading">
             <h1><%= locals.modal.modalName %></h1>
-            <a href="/developer/dronemodal/newModal"><img src="/icons/add.svg" alt="" width="40vw" style="margin-left: 80vw;" class="customerAdd"></a>
+            <% if(locals.isdeletable) { %>
+                <a href="/developer/dronemodal/deleteModal/<%= locals.modal._id %>"><img src="/icons/delete.svg" alt="" width="40vw" style="margin-left: 80vw;" class="customerAdd"></a>
+            <% } else { %>
+                <a href="/developer/dronemodal/newModal"><img src="/icons/add.svg" alt="" width="40vw" style="margin-left: 80vw;" class="customerAdd"></a>
+            <% } %>
             <hr>
         </div>
         <div class="container-fluid">
