@@ -55,14 +55,8 @@ async function droneDataValidation (req, res, next){
             drones:modal.drones+1
         }
 
-        let droneNo = 0
-        if(modal.availableNo.length){
-            droneNo = parseInt(modal.availableNo.pop()),
-            req.body.modalUpdate.availableNo=modal.availableNo
-        } else {
-            droneNo= parseInt(modal.inAir) + 1
-            req.body.modalUpdate.inAir = droneNo
-        }
+        let droneNo = parseInt(modal.inAir) + 1
+        req.body.modalUpdate.inAir = droneNo
 
         req.body.data = {
             modalId:modal._id,

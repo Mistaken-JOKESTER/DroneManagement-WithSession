@@ -6,12 +6,16 @@
             <ul class="responsive-table" id="droneList">
             <li class="table-header">
                 <div class="col col-1">View</div>
-                <div class="col col-2">Drone Number</div>
+                <div class="col col-2">Serial Number</div>
                 <div class="col col-3">Modal</div>
                 <div class="col col-4">Assgined To</div>
             </li>
             <% locals.drones.forEach(drone => { %>
-                <li class="table-row">
+                <% if(!drone.status){ %>
+                    <li class="table-row deleted" style="background-color: rgb(185, 100, 100);">
+                <% } else { %>
+                    <li class="table-row present">
+                <% } %>
                     <div class="col col-1"><a href="viewDrone/<%= drone._id %>"><button>View</button></a></div>
                     <div class="col col-2" data-label="Number"><%= drone.droneNo %></div>
                     <div class="col col-3" data-label="Modal"><%= drone.modalName %></div>

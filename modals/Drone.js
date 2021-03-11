@@ -33,6 +33,11 @@ const droneShema = new mongoose.Schema({
         type:String,
         required:true
     },
+    status:{
+        type:Boolean,
+        require:true,
+        default:true
+    },
     keyRegistry:[{
         fieldname: String,
         originalname: String,

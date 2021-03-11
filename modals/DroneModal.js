@@ -119,9 +119,6 @@ const droneModalSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
-    availableNo:[{
-        type:Number
-    }],
     drones:{
         type:Number,
         default:0,

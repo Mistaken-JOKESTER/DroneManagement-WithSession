@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/css/pageHeadline.css">
     <link rel="stylesheet" href="/css/table.css">
     <link rel="stylesheet" href="/css/verify.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/drones.css">
 
 </head>
 <body>
@@ -21,9 +23,47 @@
             <h1>Drones</h1>
             <a href="/developer/drones/newDrone"><img src="/icons/add.svg" alt="" width="40vw" style="margin-left: 80vw;" class="customerAdd"></a>
             <hr>
-        </div>  
+        </div>
+        <form action="/developer/drones/searchby" method="POST">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2">
+                        <h2>Filter</h2>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2 padd">
+                        <div>
+                            <label for="searchBy">Serach By</label>
+                        </div>
+                        <select name="searchBy" id="">
+                            <option value="assignedTo">Email</option>
+                            <option value="flightControllerNumber">FCN</option>
+                            <option value="droneNo">Serial No.</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2 padd">
+                        <label for="value">Serach Value</label>
+                        <input type="text" name="value">
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2 padd">
+                        <button type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div>
+            <button id="all" class="allC active">ALL</button>
+            <button id="deleted" class="deletedC">Deleted</button>
+            <button id="present" class="presentC">Present</button>
+        </div>
         <%- include('../../partials/drones') %>
     </main>
+    
 <script src="/js/alert.js"></script>
+<script src="/js/drones.js"></script>
 </body>
 </html>

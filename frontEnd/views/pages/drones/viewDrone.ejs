@@ -16,9 +16,13 @@
     <link rel="stylesheet" href="/css/viewModal.css">
     <link rel="stylesheet" href="/css/registryTable.css">
 </head>
-<body>
+<body">
     <%- include('../../partials/navbar') %>
-    <main>
+    <% if(!locals.drone.status){ %>
+        <main style="background-image: linear-gradient(60deg, white, rgb(250, 114, 114));">
+    <% } else { %>
+        <main>
+    <% } %>
         <%- include('../../partials/messages') %>
         <div class="pageHeading">
             <h1><%= locals.drone.droneNo %></h1>
