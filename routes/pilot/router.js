@@ -36,7 +36,8 @@ router.post('/login', async (req, res) =>{
             return res.status(404).send({error:{message:'Invalid email or password.'}})
         
         const drone = await Drone.updateOne({
-            _id:droneId
+            _id:droneId,
+            status:true
         },{
             $addToSet:{
                 pilotRegistry:{

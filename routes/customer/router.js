@@ -251,7 +251,7 @@ router.post('/checkMyDrone', customerAuth, async (req, res) => {
         if(!req.body.flightControllerNumber)
             return res.status(403).send({error:{message:'Please Provide flight controller number.', flightControllerNumber:false}})
         
-        const drone = await Drone.findOne({flightControllerNumber: req.body.flightControllerNumber, assignedTo:req.customer.email})
+        const drone = await Drone.findOne({flightControllerNumber: req.body.flightControllerNumber, assignedTo:req.customer.email, status:true})
         if(!drone){
             return res.status(404).send({error:{message:"Your don't own a drone with this flightController Number."}})
         }
@@ -326,7 +326,8 @@ router.post('/flyUp/:id', customerAuth, uploadKey, async (req, res) => {
 
         const drone = await Drone.updateOne({
             _id:id, 
-            assignedTo:req.customer.email
+            assignedTo:req.customer.email,
+            status:true
         },{
             $addToSet:{
                 keyRegistry:{
@@ -367,7 +368,8 @@ router.post('/flyDown/:id', customerAuth, uploadLog, async (req, res) => {
 
         const drone = await Drone.updateOne({
             _id:id, 
-            assignedTo:req.customer.email
+            assignedTo:req.customer.email,
+            status:true
         },{
             $addToSet:{
                 logRegistry:{

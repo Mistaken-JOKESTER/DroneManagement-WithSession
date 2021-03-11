@@ -178,9 +178,9 @@ router.get('/deregister/:id', redirectHome, async (req, res) => {
             return res.redirect(`/developer/drones/viewDrone/${id}`)
         }
 
-        const drone = await Drone.findById(id)
+        const drone = await Drone.findOne({_id:id, status:true})
         if(!drone){
-            req.flash('warning_msg','Drone with given id does not exesist.')
+            req.flash('warning_msg','Drone with given id does not exesist or its deregistered already.')
             return res.redirect(`/developer/drones/viewDrone/${id}`)
         }
 
